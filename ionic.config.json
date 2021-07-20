@@ -1,0 +1,7 @@
+{
+  "name": "personManagement",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
