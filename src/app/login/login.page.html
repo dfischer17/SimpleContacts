@@ -7,11 +7,11 @@
 <ion-content>
   <ion-item>
     <ion-label position="stacked">Benutzername</ion-label>
-    <ion-input placeholder="Benutzername eingeben"></ion-input>
+    <ion-input [(ngModel)]="usrName" placeholder="Benutzername eingeben"></ion-input>
   </ion-item>
   <ion-item class="ion-margin-bottom">
     <ion-label position="stacked">Passwort</ion-label>
-    <ion-input placeholder="Passwort eingeben"></ion-input>
+    <ion-input [(ngModel)]="pwd" placeholder="Passwort eingeben"></ion-input>
   </ion-item>
-  <ion-button expand="block" shape="round">Anmelden</ion-button>
+  <ion-button  expand="block" shape="round" (click) ="login()">Anmelden</ion-button>  
 </ion-content>
