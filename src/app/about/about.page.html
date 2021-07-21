@@ -8,7 +8,7 @@
 </ion-header>
 
 <ion-content>
-  <ion-list *ngFor="let person of persons">
+  <ion-list *ngFor="let person of persons | async">
     <app-person-entry [person]="person"></app-person-entry>
   </ion-list>  
 </ion-content>

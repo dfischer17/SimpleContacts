@@ -1,5 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from "@angular/common/http";
+import { Observable } from 'rxjs';
+import { Person } from '../interfaces/person';
 
 @Injectable({
   providedIn: 'root'
@@ -7,14 +9,9 @@ import { HttpClient } from "@angular/common/http";
 export class HttpHandlerService {
 
   constructor(private httpClient: HttpClient) { }
-    
-  loadDummyData() { 
-    this.httpClient.get("./assets/data/students.json").subscribe(data =>{
-      console.log('Clinet ' + typeof this.httpClient.get("./assets/data/students.json"))
-      console.log('Loaded data from assets.students.json');
-      console.log(data);
-      console.log(typeof data)
-      return data;      
-    })
+
+  loadDummyData(): Observable<Person[]> {
+    return this.httpClient.get<Person[]>('./assets/data/personsData.json');
   }
 }
+
