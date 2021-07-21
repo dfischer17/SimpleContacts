@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { HttpClient } from "@angular/common/http";
 
 @Component({
   selector: 'app-about',
@@ -6,14 +7,14 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./about.page.scss'],
 })
 export class AboutPage implements OnInit {
-  students: any[];
+  students: any = [];
 
-  constructor() { }
+  constructor(private httpClient: HttpClient) { }
 
   ngOnInit() {
-    fetch('./assets/data/students.json').then(res => res.json())
-      .then(json => {
-        this.students = json;
-      });
+    this.httpClient.get("./assets/data/students.json").subscribe(data =>{
+      console.log(data);
+      this.students = data;
+    })
   }
 }
