@@ -4,4 +4,5 @@ export interface Person {
     postalCode: string;
     city: string;
     address: string;
+    icon: string;
 }

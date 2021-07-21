@@ -4,34 +4,55 @@
       "firstname": "Daniel",
       "postalCode": "4312",
       "city": "Wels",
-      "address": "Freiburg 87"
+      "address": "Freiburg 87",
+      "icon": "https://cdn.icon-icons.com/icons2/1674/PNG/512/person_110935.png"
     },
     {
       "lastname": "Huber",
       "firstname": "Franz",
       "postalCode": "6457",
       "city": "Rottenbach",
-      "address": "Stötten 14"
+      "address": "Stötten 14",
+      "icon": "https://cdn.icon-icons.com/icons2/1674/PNG/512/person_110935.png"
     },
     {
       "lastname": "Gruber",
       "firstname": "David",
       "postalCode": "3478",
       "city": "Gallspach",
-      "address": "Brandhof 16"
+      "address": "Brandhof 16",
+      "icon": "https://cdn.icon-icons.com/icons2/1674/PNG/512/person_110935.png"
+    },
+    {
+      "lastname": "Pöttinger Gmbh",
+      "firstname": "",
+      "postalCode": "3478",
+      "city": "Gallspach",
+      "address": "Brandhof 16",
+      "icon": "https://static.thenounproject.com/png/621754-200.png"
     },
     {
       "lastname": "Sterner",
       "firstname": "Leon",
       "postalCode": "2345",
       "city": "Kematen",
-      "address": "Ziegeleistraße 14"
+      "address": "Ziegeleistraße 14",
+      "icon": "https://cdn.icon-icons.com/icons2/1674/PNG/512/person_110935.png"
+    },
+    {
+      "lastname": "Mercedes AG",
+      "firstname": "",
+      "postalCode": "3478",
+      "city": "Gallspach",
+      "address": "Brandhof 16",
+      "icon": "https://static.thenounproject.com/png/621754-200.png"
     },
     {
       "lastname": "Niemens",
       "firstname": "Phillip",
       "postalCode": "7456",
       "city": "Meggenhofen",
-      "address": "Goethestraße 34"
+      "address": "Goethestraße 34",
+      "icon": "https://static.thenounproject.com/png/621754-200.png"
     }
   ]          
