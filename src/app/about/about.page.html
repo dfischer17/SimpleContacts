@@ -8,18 +8,38 @@
 </ion-header>
 
 <ion-content>
-  <ion-grid class="ion-margin">
-    <ion-row>
-      <ion-col>S.No</ion-col>
-      <ion-col>Name</ion-col>
-      <ion-col>Gender</ion-col>
-      <ion-col>Country</ion-col>
-    </ion-row>
-    <ion-row *ngFor="let student of students; index as i">
-      <ion-col>{{ i + 1 }}</ion-col>
-      <ion-col>{{ student.name }}</ion-col>
-      <ion-col>{{ student.gender }}</ion-col>
-      <ion-col>{{ student.country }}</ion-col>
-    </ion-row>
-  </ion-grid>
+  <ion-list>
+    <ion-item>
+      <ion-avatar slot="start">
+        <img src="https://ionicframework.com/docs/demos/api/avatar/avatar.svg">
+      </ion-avatar>
+      <div>
+        <div class="container">
+          <ion-label>Fröhler</ion-label>
+          <ion-label>Pepe</ion-label>
+        </div>
+        <div class="container">
+          <ion-label>4710</ion-label>
+          <ion-label>Grieskirchen</ion-label>
+          <ion-label>Sonnenalle 24</ion-label>
+        </div>
+      </div>
+    </ion-item>
+    <ion-item>
+      <ion-avatar slot="start">
+        <img src="https://ionicframework.com/docs/demos/api/avatar/avatar.svg">
+      </ion-avatar>
+      <div>
+        <div class="container">
+          <ion-label>Hansbauer</ion-label>
+          <ion-label>Tobias</ion-label>
+        </div>
+        <div class="container">  
+          <ion-label>4707</ion-label>
+          <ion-label>Schlüßlberg</ion-label>
+          <ion-label>Rosengarten 12</ion-label>
+        </div>
+      </div>
+    </ion-item>
+  </ion-list>
 </ion-content>
