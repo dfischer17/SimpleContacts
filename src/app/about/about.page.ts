@@ -9,11 +9,15 @@ import { Observable } from 'rxjs';
   styleUrls: ['./about.page.scss'],
 })
 export class AboutPage implements OnInit {
-  persons: Observable<Person[]>;
+  persons: Person[];
+  searchTerm :string;
 
   constructor(private httpHandler: HttpHandlerService) { }
 
   ngOnInit() {
-    this.persons = this.httpHandler.loadDummyData();
+    // Load Contacts
+    this.httpHandler.loadDummyData().toPromise().then(contacts => {
+      this.persons = contacts.sort((a, b) => (a.lastname < b.lastname ? -1 : 1));;
+    });
   }
 }
