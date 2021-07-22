@@ -12,6 +12,6 @@
     <ion-searchbar [(ngModel)]="searchTerm" showCancelButton="focus" placeholder="Kontakt suchen"></ion-searchbar>
   </ion-toolbar>
   <ion-list *ngFor="let person of persons | filter:searchTerm">
-    <app-person-entry [person]="person"></app-person-entry>
+    <app-person-entry [person]="person" (click)="openModal(person)"></app-person-entry>
   </ion-list>  
 </ion-content>

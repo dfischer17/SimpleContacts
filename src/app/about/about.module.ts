@@ -9,6 +9,7 @@ import { AboutPageRoutingModule } from './about-routing.module';
 import { AboutPage } from './about.page';
 import { PersonEntryComponent } from '../components/person-entry/person-entry.component';
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
+import { ContactDetailPageModule } from '../contact-detail/contact-detail.module';
 
 @NgModule({
   imports: [
@@ -16,7 +17,8 @@ import { Ng2SearchPipeModule } from 'ng2-search-filter';
     FormsModule,
     IonicModule,
     AboutPageRoutingModule,
-    Ng2SearchPipeModule
+    Ng2SearchPipeModule,
+    ContactDetailPageModule
   ],
   declarations: [AboutPage, PersonEntryComponent]
 })

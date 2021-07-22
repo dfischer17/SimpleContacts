@@ -10,7 +10,11 @@ const routes: Routes = [
     path: '',
     redirectTo: 'app',
     pathMatch: 'full'
+  },  {
+    path: 'contact-detail',
+    loadChildren: () => import('./contact-detail/contact-detail.module').then( m => m.ContactDetailPageModule)
   }
+
 ];
 
 @NgModule({

@@ -5,6 +5,8 @@
       "postalCode": "4312",
       "city": "Wels",
       "address": "Freiburg 87",
+      "phone": "07248/466434",
+      "mail": "fischer.daniel@gmail.com",
       "icon": "https://cdn.icon-icons.com/icons2/1674/PNG/512/person_110935.png"
     },
     {
@@ -13,6 +15,8 @@
       "postalCode": "6457",
       "city": "Rottenbach",
       "address": "Stötten 14",
+      "phone": "07249/973873",
+      "mail": "huber.franz@gmail.com",
       "icon": "https://cdn.icon-icons.com/icons2/1674/PNG/512/person_110935.png"
     },
     {
@@ -21,6 +25,8 @@
       "postalCode": "3478",
       "city": "Gallspach",
       "address": "Brandhof 16",
+      "phone": "0677/564433",
+      "mail": "gruber.david@gmail.com",
       "icon": "https://cdn.icon-icons.com/icons2/1674/PNG/512/person_110935.png"
     },
     {
@@ -29,6 +35,8 @@
       "postalCode": "3478",
       "city": "Gallspach",
       "address": "Brandhof 16",
+      "phone": "0664/833832",
+      "mail": "pöttinger@gmail.com",
       "icon": "https://static.thenounproject.com/png/621754-200.png"
     },
     {
@@ -37,22 +45,28 @@
       "postalCode": "2345",
       "city": "Kematen",
       "address": "Ziegeleistraße 14",
+      "phone": "0664/345333",
+      "mail": "sterner.leon@gmail.com",
       "icon": "https://cdn.icon-icons.com/icons2/1674/PNG/512/person_110935.png"
     },
     {
-      "lastname": "Mercedes AG",
+      "lastname": "Mercedes Benz AG",
       "firstname": "",
       "postalCode": "3478",
       "city": "Gallspach",
       "address": "Brandhof 16",
+      "phone": "07248/232343",
+      "mail": "mercedes-benz@gmail.com",
       "icon": "https://static.thenounproject.com/png/621754-200.png"
     },
     {
-      "lastname": "Siemens Gmbh",
+      "lastname": "BMW M Gmbh",
       "firstname": "",
       "postalCode": "7456",
       "city": "Meggenhofen",
       "address": "Goethestraße 34",
+      "phone": "0677/323345",
+      "mail": "bmw-motorsport@gmail.com",
       "icon": "https://static.thenounproject.com/png/621754-200.png"
     }
   ]          
