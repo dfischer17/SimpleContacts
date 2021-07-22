@@ -8,7 +8,10 @@
 </ion-header>
 
 <ion-content>
-  <ion-list *ngFor="let person of persons | async">
+  <ion-toolbar>
+    <ion-searchbar [(ngModel)]="searchTerm" showCancelButton="focus" placeholder="Kontakt suchen"></ion-searchbar>
+  </ion-toolbar>
+  <ion-list *ngFor="let person of persons | async | filter:searchTerm">
     <app-person-entry [person]="person"></app-person-entry>
   </ion-list>  
 </ion-content>

@@ -14,6 +14,6 @@ export class AboutPage implements OnInit {
   constructor(private httpHandler: HttpHandlerService) { }
 
   ngOnInit() {
-    this.persons = this.httpHandler.loadDummyData()      
+    this.persons = this.httpHandler.loadDummyData();
   }
 }
