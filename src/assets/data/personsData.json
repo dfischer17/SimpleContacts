@@ -7,7 +7,7 @@
       "address": "Freiburg 87",
       "phone": "07248/466434",
       "mail": "fischer.daniel@gmail.com",
-      "icon": "https://cdn.icon-icons.com/icons2/1674/PNG/512/person_110935.png"
+      "icon": "assets/icon/person_icon.png"
     },
     {
       "lastname": "Huber",
@@ -17,7 +17,7 @@
       "address": "Friedhofstraße 61",
       "phone": "07249/973873",
       "mail": "huber.franz@gmail.com",
-      "icon": "https://cdn.icon-icons.com/icons2/1674/PNG/512/person_110935.png"
+      "icon": "assets/icon/person_icon.png"
     },
     {
       "lastname": "Gruber",
@@ -27,7 +27,7 @@
       "address": "Brandhof 16",
       "phone": "0677/564433",
       "mail": "gruber.david@gmail.com",
-      "icon": "https://cdn.icon-icons.com/icons2/1674/PNG/512/person_110935.png"
+      "icon": "assets/icon/person_icon.png"
     },
     {
       "lastname": "Pöttinger Gmbh",
@@ -47,7 +47,7 @@
       "address": "Ziegeleistraße 14",
       "phone": "0664/345333",
       "mail": "sterner.leon@gmail.com",
-      "icon": "https://cdn.icon-icons.com/icons2/1674/PNG/512/person_110935.png"
+      "icon": "assets/icon/person_icon.png"
     },
     {
       "lastname": "Mercedes Benz AG",
