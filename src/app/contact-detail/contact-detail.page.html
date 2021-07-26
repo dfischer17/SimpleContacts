@@ -11,7 +11,7 @@
 
 <ion-content>
   <div style="display: flex; align-items: center;justify-content: center;flex-direction: column;margin-bottom: 20px;">
-    <img style="width:50%" alt="image" src="{{contact.icon}}">    
+    <img style="width:50%" alt="image" src="{{contact.icon}}">
     <ion-label id="nameLabel" color="primary">{{contact.lastname}} {{contact.firstname}}</ion-label>
   </div>
 
@@ -23,7 +23,7 @@
     </a>
   </ion-item>
   <ion-item>
-    <a href="mailto: abc@example.com">
+    <a href="mailto: {{contact.mail}}">
       <ion-label class="ion-text-wrap">{{contact.mail}}</ion-label>
     </a>
     <ion-icon name="mail" slot="start"></ion-icon>
@@ -36,4 +36,34 @@
     </a>
     <ion-icon name="location" slot="start"></ion-icon>
   </ion-item>
+
+  <!-- <ion-card>
+    <ion-card-header>
+      <ion-card-subtitle>Datenschutzbeauftragter</ion-card-subtitle>
+      <ion-card-title>Andreas Maier</ion-card-title>
+    </ion-card-header>
+
+    <ion-card-content>
+      <ion-item>
+        <a href="tel:{{contact.phone}}">
+          <ion-label>{{contact.phone}}</ion-label>
+        </a>
+      </ion-item>
+      <ion-item>
+        <a href="mailto: {{contact.mail}}">
+          <ion-label class="ion-text-wrap">{{contact.mail}}</ion-label>
+        </a>
+
+      </ion-item>
+      <ion-item>
+        <a href="bingmaps:?cp={{contact.postalCode}} {{contact.city}} {{contact.address}}">
+          <a href="http://maps.apple.com/maps?q={{contact.postalCode}} {{contact.city}} {{contact.address}}">
+            <ion-label class="ion-text-wrap">{{contact.postalCode}} {{contact.city}} {{contact.address}}</ion-label>
+          </a>
+        </a>
+
+      </ion-item>
+    </ion-card-content>
+  </ion-card> -->
+
 </ion-content>
