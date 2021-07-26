@@ -19,6 +19,10 @@
   <ion-item>
     <ion-label>{{contact.phone}}</ion-label>
     <ion-icon name="call" slot="start"></ion-icon>
+    <a href="tel:{{contact.phone}}">
+      <ion-button color="tertiary" shape="round">anrufen</ion-button>
+    </a>
+    
   </ion-item>
   <ion-item>
     <ion-label>{{contact.mail}}</ion-label>
