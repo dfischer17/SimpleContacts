@@ -7,7 +7,13 @@ const routes: Routes = [
   {
     path: '',
     component: LoginPage
-  }
+  },
+
+  // {
+  //   path: '',
+  //   redirectTo: 'login',
+  //   pathMatch: 'full'
+  // },
 ];
 
 @NgModule({

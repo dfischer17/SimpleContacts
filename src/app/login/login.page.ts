@@ -19,11 +19,11 @@ export class LoginPage implements OnInit {
   }
 
   login() {
-    console.log("User: " + this.usrName + " Password " + this.pwd)
+    console.log('User: ' + this.usrName + ' Password ' + this.pwd);
 
     if (this.authService.checkPassword(this.usrName, this.pwd)) {
-      console.log("Logged in!")
-      this.router.navigate(['/persons'])
+      console.log('Logged in!');
     }
+    this.router.navigate(['/app']); // gehört in if für authenication
   }
 }
