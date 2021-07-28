@@ -4,3 +4,8 @@ ion-content {
     --padding-end: 10%;
 }
 
+@media all and (display-mode: standalone) {
+    .installBtn {
+        display:none;
+    }
+  }

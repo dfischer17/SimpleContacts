@@ -11,12 +11,31 @@ export class LoginPage implements OnInit {
   usrName: string;
   pwd: string;
   private authService: AuthService;
+  private deferredPrompt;
 
-  constructor(private pAuthService: AuthService, private router: Router) { }
+  constructor(private pAuthService: AuthService, private router: Router) {
+    // Initialize deferredPrompt for use later to show browser install prompt.
+    window.addEventListener('beforeinstallprompt', (e) => {
+      // Prevent the mini-infobar from appearing on mobile
+      e.preventDefault();
+      // Stash the event so it can be triggered later.
+      this.deferredPrompt = e;
+
+      // Optionally, send analytics event that PWA install promo was shown.
+      console.log(`'beforeinstallprompt' event was fired.`);
+    });
+  }
 
   ngOnInit() {
     this.authService = this.pAuthService;
     this.addPrefersColorSchemeListener();
+  }
+
+  /*
+  Öffnet das PWA Installationsfenster des Browsers
+  */
+  install() {
+    this.deferredPrompt.prompt();
   }
 
   /*
