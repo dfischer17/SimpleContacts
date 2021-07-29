@@ -11,8 +11,19 @@
   <ion-list>
     <ion-item>
       <ion-label>Dark Theme</ion-label>
-      <ion-toggle [(ngModel)]='isDark' (ionChange)='toggleDarkMode()'>Umschalten</ion-toggle>
+      <ion-toggle [(ngModel)]='isDark' (ionChange)='toggleDarkMode()' style='--handle-background-checked:var(--toggleHead); --background-checked:var(--accentColor)'>Umschalten</ion-toggle>
       <ion-icon name="moon" slot="start"></ion-icon>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>Akzentfarbe</ion-label>
+      <ion-select [(ngModel)]="selectedAccentColor" (ionChange)="changeAccentColor()" placeholder="Auswählen">
+        <ion-select-option value="#3880ff">Blau (Standard)</ion-select-option>
+        <ion-select-option value="#eb4034">Rot</ion-select-option>
+        <ion-select-option value="#2dd36f">Grün</ion-select-option>
+        <ion-select-option value="#cc00ff">Lila</ion-select-option>
+      </ion-select>
+      <ion-icon name="color-palette" slot="start"></ion-icon>
     </ion-item>
   </ion-list>
 </ion-content>

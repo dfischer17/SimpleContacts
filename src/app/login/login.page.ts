@@ -29,6 +29,10 @@ export class LoginPage implements OnInit {
   ngOnInit() {
     this.authService = this.pAuthService;
     this.addPrefersColorSchemeListener();
+
+    // Init accentColors (not persistent yet!)
+    document.body.style.setProperty('--accentColor', '#3880ff');
+    document.body.style.setProperty('--toggleHead', '#ffffff');
   }
 
   /*
