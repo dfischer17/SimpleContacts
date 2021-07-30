@@ -1,0 +1,30 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>contacts</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-list *ngFor="let contact of contacts" [ngSwitch]="contact.contactType">
+    <!-- <ng-template ngSwitchCase="0">
+			<app-person-contact> [lastname]="'contact.lastname'"</app-person-contact>
+		</ng-template>
+     <ion-item-group>
+      <ion-item>{{contact.PersArt}}</ion-item>
+      <ion-item>{{contact.Adresse.Strassenname}}</ion-item>
+      <ion-item>{{contact.Kontakt.Kontaktdaten}}</ion-item>
+      <ion-item>{{contact.Natuerlich.Familienname}}</ion-item>
+      <ion-item>{{contact.Natuerlich.Geburtsdatum}}</ion-item>
+      <ion-item>{{contact.Natuerlich.Geschlecht}}</ion-item>
+      <ion-item>{{contact.Natuerlich.Vorname}}</ion-item>
+    </ion-item-group> --> 
+    
+    <ng-template ngSwitchCase="0">
+      <app-person-contact [lastname]="contact.lastname"></app-person-contact>
+		</ng-template>
+
+  </ion-list>
+</ion-content>

@@ -13,5 +13,9 @@ export class HttpHandlerService {
   loadDummyData(): Observable<Person[]> {
     return this.httpClient.get<Person[]>('./assets/data/personsData.json');
   }
+
+  loadSampleData() {
+    return this.httpClient.get('./assets/data/sample-data.json');
+  }
 }
 
