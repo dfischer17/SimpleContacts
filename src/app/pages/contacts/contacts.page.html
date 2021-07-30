@@ -35,21 +35,25 @@
     <ion-buttons slot="start">
       <ion-menu-button></ion-menu-button>
     </ion-buttons>
-    <ion-title>contacts</ion-title>
+    <ion-title>Kontakte</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
-    <ion-list *ngFor="let contact of contacts" [ngSwitch]="contact.contactType.toString()">
+  <ion-toolbar>
+    <ion-searchbar [(ngModel)]="searchTerm" showCancelButton="focus" placeholder="Kontakt suchen"></ion-searchbar>
+  </ion-toolbar>
+
+  <ion-list *ngFor="let contact of contacts | filter:searchTerm" [ngSwitch]="contact.contactType.toString()">
 
     <!-- Depending on contactType either display person-contact or company-contact -->
     <ng-template ngSwitchCase="true">
       <app-person-contact [person]="contact"></app-person-contact>
-		</ng-template>
-      
+    </ng-template>
+
     <ng-template ngSwitchCase="false">
       <app-company-contact [company]="contact"></app-company-contact>
-		</ng-template>
+    </ng-template>
 
-    </ion-list>
+  </ion-list>
 </ion-content>

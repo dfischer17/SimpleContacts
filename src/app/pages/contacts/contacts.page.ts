@@ -11,6 +11,7 @@ import { Address } from 'src/app/interfaces/address';
 })
 export class ContactsPage implements OnInit {
   contacts: Contact[];
+  searchTerm: string;
 
   constructor(private httpHandler: HttpHandlerService) { }
 
