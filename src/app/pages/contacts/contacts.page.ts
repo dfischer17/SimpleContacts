@@ -18,8 +18,7 @@ export class ContactsPage implements OnInit {
   ngOnInit() {
     // Load Contacts
     this.httpHandler.loadSampleData().toPromise().then(data => {
-      this.contacts = this.convertRequestData(data);
-      this.contacts.forEach(x => console.log(x));
+      this.contacts = this.convertRequestData(data).sort((a, b) => this.sortContacts(a, b));
     });
   }
 
@@ -34,12 +33,12 @@ export class ContactsPage implements OnInit {
         // Properties für Person und Unternehmen
         contactType: contact.hasOwnProperty('Natuerlich'),
         address: [
-         {
-          streetName: contact.Adresse[0].Strassenname,
-          orientationNumber: contact.Adresse[0].Orientierungsnummer,
-          postalCode: contact.Adresse[0].Postleitzahl,
-          city: contact.Adresse[0].Ortschaft,
-        }
+          {
+            streetName: contact.Adresse[0].Strassenname,
+            orientationNumber: contact.Adresse[0].Orientierungsnummer,
+            postalCode: contact.Adresse[0].Postleitzahl,
+            city: contact.Adresse[0].Ortschaft,
+          }
         ],
 
         // Properties für Person
@@ -51,6 +50,20 @@ export class ContactsPage implements OnInit {
       });
     });
 
+
+
     return tempContacts;
+  }
+
+  /*
+  Sorts the contacts either by lastname or companyname depending on type
+  */
+  private sortContacts(a: Contact, b: Contact) {
+    if (a.hasOwnProperty('lastname')) {
+      return ('' + a.lastname).localeCompare(b.lastname);
+    }
+    else {
+      return ('' + a.companyname).localeCompare(b.companyname);
+    }
   }
 }
