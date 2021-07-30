@@ -1,3 +1,35 @@
+<!-- <ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>Kontakte</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-toolbar>
+    <ion-searchbar [(ngModel)]="searchTerm" showCancelButton="focus" placeholder="Kontakt suchen"></ion-searchbar>
+  </ion-toolbar>
+
+  <ion-list *ngFor="let person of persons | filter:searchTerm">
+    <ion-item-group #myItemsId>
+      <ion-item-sliding (ionSwipe)="swipeEvent($event, myItemsId, person)">
+        <ion-item-options side="start">
+          <ion-item-option color="success" expandable>anrufen</ion-item-option>
+        </ion-item-options>
+
+        <app-person-entry [person]="person" (click)="openModal(person)"></app-person-entry>
+
+        <ion-item-options side="end">
+          <ion-item-option color="primary" expandable>email</ion-item-option>
+        </ion-item-options>
+
+      </ion-item-sliding>
+    </ion-item-group>
+  </ion-list>
+</ion-content> -->
+
 <ion-header>
   <ion-toolbar>
     <ion-buttons slot="start">
@@ -8,23 +40,16 @@
 </ion-header>
 
 <ion-content>
-  <ion-list *ngFor="let contact of contacts" [ngSwitch]="contact.contactType">
-    <!-- <ng-template ngSwitchCase="0">
-			<app-person-contact> [lastname]="'contact.lastname'"</app-person-contact>
+    <ion-list *ngFor="let contact of contacts" [ngSwitch]="contact.contactType.toString()">
+
+    <!-- Depending on contactType either display person-contact or company-contact -->
+    <ng-template ngSwitchCase="true">
+      <app-person-contact [person]="contact"></app-person-contact>
 		</ng-template>
-     <ion-item-group>
-      <ion-item>{{contact.PersArt}}</ion-item>
-      <ion-item>{{contact.Adresse.Strassenname}}</ion-item>
-      <ion-item>{{contact.Kontakt.Kontaktdaten}}</ion-item>
-      <ion-item>{{contact.Natuerlich.Familienname}}</ion-item>
-      <ion-item>{{contact.Natuerlich.Geburtsdatum}}</ion-item>
-      <ion-item>{{contact.Natuerlich.Geschlecht}}</ion-item>
-      <ion-item>{{contact.Natuerlich.Vorname}}</ion-item>
-    </ion-item-group> --> 
-    
-    <ng-template ngSwitchCase="0">
-      <app-person-contact [lastname]="contact.lastname"></app-person-contact>
+      
+    <ng-template ngSwitchCase="false">
+      <app-company-contact [company]="contact"></app-company-contact>
 		</ng-template>
 
-  </ion-list>
+    </ion-list>
 </ion-content>

@@ -1,3 +1,13 @@
-<p>
-  company-contact works!
-</p>
+<ion-item>
+  <ion-icon class="entryIcon" name="business"></ion-icon>
+    <div>
+      <div class="container">
+        <ion-label>{{company.companyname}}</ion-label>
+      </div>
+      <div class="container">
+        <ion-label>{{company.address[0].postalCode}}</ion-label>
+        <ion-label>{{company.address[0].city}}</ion-label>
+        <ion-label>{{company.address[0].streetName}} {{company.address[0].orientationNumber}}</ion-label>
+      </div>
+    </div>
+  </ion-item>
