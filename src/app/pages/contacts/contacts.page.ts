@@ -3,6 +3,8 @@ import { HttpHandlerService } from 'src/app/services/http-handler.service';
 import { CompanyContactComponent } from 'src/app/components/company-contact/company-contact.component';
 import { Contact } from 'src/app/interfaces/contact';
 import { Address } from 'src/app/interfaces/address';
+import { ModalController } from '@ionic/angular';
+import { PersonDetailPage } from '../person-detail/person-detail.page';
 
 @Component({
   selector: 'app-contacts',
@@ -13,7 +15,7 @@ export class ContactsPage implements OnInit {
   contacts: Contact[];
   searchTerm: string;
 
-  constructor(private httpHandler: HttpHandlerService) { }
+  constructor(private httpHandler: HttpHandlerService, private modalController: ModalController) { }
 
   ngOnInit() {
     // Load Contacts
@@ -41,18 +43,29 @@ export class ContactsPage implements OnInit {
           }
         ],
 
+        contactOptions: contact.Kontakte,
+
         // Properties für Person
         lastname: contact.Natuerlich?.[0].Familienname,
         firstname: contact.Natuerlich?.[0].Vorname,
+        birthdate: contact.Natuerlich?.[0].Geburtsdatum,
+        gender: contact.Natuerlich?.[0].Geschlecht,
 
         // Properties für Unternehmen
         companyname: contact.Unternehmen?.[0].Name,
       });
     });
 
-
-
     return tempContacts;
+  }
+
+  // Open person-detail modal
+  async openModal(contact: Contact) {
+    const modal = await this.modalController.create({
+      component: PersonDetailPage,
+      componentProps: { contact }
+    });
+    return await modal.present();
   }
 
   /*
