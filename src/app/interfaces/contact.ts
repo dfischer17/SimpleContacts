@@ -1,5 +1,6 @@
 import { Address } from './address';
 import { ContactOption } from './contact-option';
+import { ContactPerson } from './contact-person';
 
 export interface Contact {
     // Properties für Personen und Unternehmen
@@ -15,4 +16,5 @@ export interface Contact {
 
     // Properties für Unternehmen
     companyname?: string;
+    contactPersons: ContactPerson[];
 }

@@ -1,0 +1,86 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="secondary">
+      <ion-button (click)="closeModal()">
+        <ion-icon slot="icon-only" name="close"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title>Info</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <!-- Unternehmensname -->
+  <div style="display: flex; align-items: center;justify-content: center;flex-direction: column;margin-bottom: 20px;">
+    <ion-icon name="business" style="font-size:150px"></ion-icon>
+    <ion-label id="nameLabel" color="primary">{{contact.companyname}}</ion-label>
+  </div>
+
+  <!-- Symbol und Link fuer jeweiligen Kontakttyp anzeigen -->
+  <ng-container *ngFor="let contactOption of contact.contactOptions" [ngSwitch]="contactOption.Kontaktart">
+    <ion-item>
+      <ng-template ngSwitchCase="1">
+        <a href="tel:{{contactOption.Kontaktdaten}}">
+          <ion-label>{{contactOption.Kontaktdaten}}</ion-label>
+        </a>
+        <ion-icon name="call" slot="start"></ion-icon>
+      </ng-template>
+
+      <ng-template ngSwitchCase="2">
+        <a href="tel:{{contactOption.Kontaktdaten}}">
+          <ion-label>{{contactOption.Kontaktdaten}}</ion-label>
+        </a>
+        <ion-icon name="call" slot="start"></ion-icon>
+      </ng-template>
+
+      <ng-template ngSwitchCase="3">
+        <a href="tel:{{contactOption.Kontaktdaten}}">
+          <ion-label>{{contactOption.Kontaktdaten}}</ion-label>
+        </a>
+        <ion-icon name="call" slot="start"></ion-icon>
+      </ng-template>
+
+      <ng-template ngSwitchCase="4">
+        <a href="mailto: {{contactOption.Kontaktdaten}}">
+          <ion-label class="ion-text-wrap">{{contactOption.Kontaktdaten}}</ion-label>
+        </a>
+        <ion-icon name="mail" slot="start"></ion-icon>
+      </ng-template>
+    </ion-item>
+  </ng-container>
+
+  <!-- Standort -->
+  <ion-item id="locationItem" lines="none">
+    <a href="bingmaps:?cp={{contact.address[0].city}} {{contact.address[0].streetName}}">
+      <a href="http://maps.apple.com/maps?q={{contact.address[0].city}} {{contact.address[0].streetName}}">
+        <ion-label class="ion-text-wrap">{{contact.address[0].postalCode}} {{contact.address[0].city}}
+          {{contact.address[0].streetName}} {{contact.address[0].orientationNumber}}</ion-label>
+      </a>
+    </a>
+    <ion-icon name="location" slot="start"></ion-icon>
+  </ion-item>
+
+  <!-- Ansprechpartner -->
+  <ng-container *ngFor="let contactPerson of contact.contactPersons">
+    <ion-card>
+      <ion-card-header>
+        <ion-card-title>{{contactPerson.Familienname}} {{contactPerson.Vorname}}</ion-card-title>
+      </ion-card-header>
+  
+      <ion-card-content>
+        <ion-item>
+          <a href="tel:{{contactPerson.Mobil}}">
+            <ion-label>{{contactPerson.Mobil}}</ion-label>
+          </a>
+          <ion-icon name="call" slot="start"></ion-icon>
+        </ion-item>
+        <ion-item lines="none">
+          <a href="mailto: {{contactPerson.Email}}">
+            <ion-label class="ion-text-wrap">{{contactPerson.Email}}</ion-label>
+          </a>
+          <ion-icon name="mail" slot="start"></ion-icon>
+        </ion-item>        
+      </ion-card-content>
+    </ion-card>
+  </ng-container>  
+</ion-content>

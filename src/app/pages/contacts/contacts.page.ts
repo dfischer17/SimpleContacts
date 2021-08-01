@@ -5,6 +5,7 @@ import { Contact } from 'src/app/interfaces/contact';
 import { Address } from 'src/app/interfaces/address';
 import { ModalController } from '@ionic/angular';
 import { PersonDetailPage } from '../person-detail/person-detail.page';
+import { CompanyDetailPage } from '../company-detail/company-detail.page';
 
 @Component({
   selector: 'app-contacts',
@@ -53,18 +54,33 @@ export class ContactsPage implements OnInit {
 
         // Properties für Unternehmen
         companyname: contact.Unternehmen?.[0].Name,
+        contactPersons: contact.Ansprechpartner,
       });
     });
 
     return tempContacts;
   }
 
-  // Open person-detail modal
+  // Open contact-detail modal
   async openModal(contact: Contact) {
-    const modal = await this.modalController.create({
-      component: PersonDetailPage,
-      componentProps: { contact }
-    });
+    let modal;
+
+    // Person
+    if (contact.contactType) {
+      modal = await this.modalController.create({
+        component: PersonDetailPage,
+        componentProps: { contact }
+      });
+    }
+
+    // Unternehmen
+    else {
+      modal = await this.modalController.create({
+        component: CompanyDetailPage,
+        componentProps: { contact }
+      });
+    }
+
     return await modal.present();
   }
 

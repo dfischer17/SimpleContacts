@@ -20,7 +20,7 @@
     </ng-template>
 
     <ng-template ngSwitchCase="false">
-      <app-company-contact [company]="contact"></app-company-contact>
+      <app-company-contact [company]="contact" (click)="openModal(contact)"></app-company-contact>
     </ng-template>
 
   </ion-list>
