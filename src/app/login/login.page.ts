@@ -1,39 +1,54 @@
 import { Component, OnInit } from '@angular/core';
-import { AuthService } from '../services/auth.service';
 import { Router } from '@angular/router';
+import { ViewWillEnter, ViewWillLeave } from '@ionic/angular';
+import { AuthGuardService } from '../services/guards/auth-guard.service';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.page.html',
   styleUrls: ['./login.page.scss'],
 })
-export class LoginPage implements OnInit {
+export class LoginPage implements OnInit, ViewWillEnter, ViewWillLeave{
   usrName: string;
   pwd: string;
-  private authService: AuthService;
   private deferredPrompt;
 
-  constructor(private pAuthService: AuthService, private router: Router) {
+  constructor(private router: Router, private authGuardService: AuthGuardService) {
     // Initialize deferredPrompt for use later to show browser install prompt.
     window.addEventListener('beforeinstallprompt', (e) => {
-      // Prevent the mini-infobar from appearing on mobile
+      // Standard installieren Message abfangen
       e.preventDefault();
-      // Stash the event so it can be triggered later.
-      this.deferredPrompt = e;
 
-      // Optionally, send analytics event that PWA install promo was shown.
+      // Installieren event speichern
+      this.deferredPrompt = e;
       console.log(`'beforeinstallprompt' event was fired.`);
     });
   }
 
+  /*
+  Makes sure user can't go to LoginPage and login with browser forward button
+  */
+  ionViewWillEnter(): void {
+    this.authGuardService.logout();
+  }
+
+  /*
+  Clears user input in Login-Page when user logs in
+  */
+  ionViewWillLeave(): void {
+    this.usrName = '';
+    this.pwd = '';    
+  }
+
   ngOnInit() {
-    this.authService = this.pAuthService;
     this.addPrefersColorSchemeListener();
 
     // Init accentColors (not persistent yet!)
     document.body.style.setProperty('--accentColor', '#3880ff');
     document.body.style.setProperty('--toggleHead', '#ffffff');
   }
+
+ 
 
   /*
   Öffnet das PWA Installationsfenster des Browsers
@@ -43,15 +58,12 @@ export class LoginPage implements OnInit {
   }
 
   /*
-  Prüft Login-Daten mit authService => wenn erfolgreich weiterleitung auf app
+  Prüft Login-Daten mit AuthGuardService => wenn erfolgreich weiterleitung auf app
   */
   login() {
     console.log('User: ' + this.usrName + ' Password ' + this.pwd);
-
-    if (this.authService.checkPassword(this.usrName, this.pwd)) {
-      console.log('Logged in!');
-    }
-    this.router.navigate(['/app']); // gehört in if für authenication
+    this.authGuardService.authenticate(this.usrName, this.pwd);
+    this.router.navigate(['/app']);
   }
 
   /*

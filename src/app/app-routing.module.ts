@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
+import { AuthGuardService } from './services/guards/auth-guard.service';
 
 const routes: Routes = [
   {
@@ -8,25 +9,14 @@ const routes: Routes = [
   },
   {
     path: 'app',
-    loadChildren: () => import('./split-layout/split-layout.module').then( m => m.SplitLayoutPageModule)
+    loadChildren: () => import('./split-layout/split-layout.module').then( m => m.SplitLayoutPageModule),
+    canActivate: [AuthGuardService]
   },
   {
     path: '',
     redirectTo: 'login',
     pathMatch: 'full'
   },
-  {
-    path: 'contacts',
-    loadChildren: () => import('./pages/contacts/contacts.module').then( m => m.ContactsPageModule)
-  },
-  {
-    path: 'person-detail',
-    loadChildren: () => import('./pages/person-detail/person-detail.module').then( m => m.PersonDetailPageModule)
-  },  {
-    path: 'company-detail',
-    loadChildren: () => import('./pages/company-detail/company-detail.module').then( m => m.CompanyDetailPageModule)
-  },
-
 ];
 
 @NgModule({

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AuthGuardService } from '../services/guards/auth-guard.service';
 
 @Component({
   selector: 'app-split-layout',
@@ -7,9 +8,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SplitLayoutPage implements OnInit {
 
-  constructor() { }
+  constructor(private authGuardService: AuthGuardService) { }
 
   ngOnInit() {
+  }
+
+  logout() {
+    this.authGuardService.logout();
   }
 
 }
