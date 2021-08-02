@@ -13,15 +13,25 @@
   </ion-toolbar>
 
   <ion-list *ngFor="let contact of contacts | filter:searchTerm" [ngSwitch]="contact.contactType.toString()">
+    <ion-item-group #myItemsId>
+      <ion-item-sliding (ionSwipe)="swipeEvent($event, myItemsId, contact)">
+        <ion-item-options side="start">
+          <ion-item-option color="success" expandable>anrufen</ion-item-option>
+        </ion-item-options>
+        <!-- Depending on contactType either display person-contact or company-contact -->
+        <ng-template ngSwitchCase="true">
+          <app-person-contact [person]="contact" (click)="openModal(contact)"></app-person-contact>
+        </ng-template>
 
-    <!-- Depending on contactType either display person-contact or company-contact -->
-    <ng-template ngSwitchCase="true">
-      <app-person-contact [person]="contact" (click)="openModal(contact)"></app-person-contact>
-    </ng-template>
+        <ng-template ngSwitchCase="false">
+          <app-company-contact [company]="contact" (click)="openModal(contact)"></app-company-contact>
+        </ng-template>
 
-    <ng-template ngSwitchCase="false">
-      <app-company-contact [company]="contact" (click)="openModal(contact)"></app-company-contact>
-    </ng-template>
+        <ion-item-options side="end">
+          <ion-item-option color="primary" expandable>email</ion-item-option>
+        </ion-item-options>
 
+      </ion-item-sliding>
+    </ion-item-group>
   </ion-list>
 </ion-content>

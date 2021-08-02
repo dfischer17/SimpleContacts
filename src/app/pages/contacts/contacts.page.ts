@@ -6,6 +6,7 @@ import { Address } from 'src/app/interfaces/address';
 import { ModalController } from '@ionic/angular';
 import { PersonDetailPage } from '../person-detail/person-detail.page';
 import { CompanyDetailPage } from '../company-detail/company-detail.page';
+import { ContactOption } from 'src/app/interfaces/contact-option';
 
 @Component({
   selector: 'app-contacts',
@@ -94,5 +95,59 @@ export class ContactsPage implements OnInit {
     else {
       return ('' + a.companyname).localeCompare(b.companyname);
     }
+  }
+
+  // Handle contact item swiping
+  swipeEvent($event, item, contact: Contact) {
+    console.log($event)
+    if ($event.detail.side == 'start') {
+      console.log('call ' + this.getFirstPhonenumber(contact.contactOptions));
+      window.open('tel:' + this.getFirstPhonenumber(contact.contactOptions), "_self");
+      this.closeAllItems(item)      
+    } else {
+      console.log('email ' + this.getFirstEmailAddress(contact.contactOptions));
+      window.open('mailto:' + this.getFirstEmailAddress(contact.contactOptions), "_self");
+      this.closeAllItems(item)
+    }
+  }
+
+  // Close swipe after swiping
+  closeAllItems(item) {
+    let a = Array.prototype.slice.call(item.el.children)
+    a.map((val) => {
+      val.close();
+    })
+  }
+
+  /*
+  Get's the first callable contactOption of a contact
+  */
+  getFirstPhonenumber(contactOptions: ContactOption[]): string {
+    contactOptions.forEach(function (contactOption) {
+      const option: number = contactOption.Kontaktart;
+
+      // Wenn Kontaktoption Tel-nummer zurückgeben
+      if (option === 1 || option === 2 || option === 3) {
+        return contactOption.Kontaktdaten;
+      }
+    });
+
+    return "";
+  }
+
+  /*
+  Get's the first emailable contactOption of a contact
+  */
+  getFirstEmailAddress(contactOptions: ContactOption[]): string {
+    contactOptions.forEach(function (contactOption) {
+      const option: number = contactOption.Kontaktart;
+
+      // Wenn Kontaktoption email zurückgeben
+      if (option === 4) {
+        return contactOption.Kontaktdaten;
+      }
+    });
+
+    return "";
   }
 }
