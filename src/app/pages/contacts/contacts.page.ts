@@ -122,32 +122,38 @@ export class ContactsPage implements OnInit {
   /*
   Get's the first callable contactOption of a contact
   */
-  getFirstPhonenumber(contactOptions: ContactOption[]): string {
+  getFirstPhonenumber(contactOptions: ContactOption[]) {
+    let phoneNumber: string;
+
     contactOptions.forEach(function (contactOption) {
       const option: number = contactOption.Kontaktart;
+      
+      console.log(option);
 
       // Wenn Kontaktoption Tel-nummer zurückgeben
       if (option === 1 || option === 2 || option === 3) {
-        return contactOption.Kontaktdaten;
+        phoneNumber = contactOption.Kontaktdaten;
       }
     });
 
-    return "";
+    return phoneNumber;
   }
 
   /*
   Get's the first emailable contactOption of a contact
   */
   getFirstEmailAddress(contactOptions: ContactOption[]): string {
+    let email: string;
+
     contactOptions.forEach(function (contactOption) {
       const option: number = contactOption.Kontaktart;
 
       // Wenn Kontaktoption email zurückgeben
       if (option === 4) {
-        return contactOption.Kontaktdaten;
+        email = contactOption.Kontaktdaten;
       }
     });
 
-    return "";
+    return email;
   }
 }
