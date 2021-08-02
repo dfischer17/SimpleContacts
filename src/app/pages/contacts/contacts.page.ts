@@ -127,8 +127,6 @@ export class ContactsPage implements OnInit {
 
     contactOptions.forEach(function (contactOption) {
       const option: number = contactOption.Kontaktart;
-      
-      console.log(option);
 
       // Wenn Kontaktoption Tel-nummer zurückgeben
       if (option === 1 || option === 2 || option === 3) {
