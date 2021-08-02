@@ -16,7 +16,9 @@
     <ion-item-group #myItemsId>
       <ion-item-sliding (ionSwipe)="swipeEvent($event, myItemsId, contact)">
         <ion-item-options side="start">
-          <ion-item-option color="success" expandable>anrufen</ion-item-option>
+          <ion-item-option color="success" expandable>
+            <ion-icon name="call"></ion-icon>
+          </ion-item-option>
         </ion-item-options>
         <!-- Depending on contactType either display person-contact or company-contact -->
         <ng-template ngSwitchCase="true">
@@ -28,7 +30,9 @@
         </ng-template>
 
         <ion-item-options side="end">
-          <ion-item-option color="primary" expandable>email</ion-item-option>
+          <ion-item-option color="primary" expandable>
+            <ion-icon name="mail"></ion-icon>
+          </ion-item-option>
         </ion-item-options>
 
       </ion-item-sliding>
