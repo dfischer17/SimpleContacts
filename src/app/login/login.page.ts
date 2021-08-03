@@ -2,18 +2,19 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ViewWillEnter, ViewWillLeave } from '@ionic/angular';
 import { AuthGuardService } from '../services/guards/auth-guard.service';
+import { AlertController } from '@ionic/angular';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.page.html',
   styleUrls: ['./login.page.scss'],
 })
-export class LoginPage implements OnInit, ViewWillEnter, ViewWillLeave{
+export class LoginPage implements OnInit, ViewWillEnter, ViewWillLeave {
   usrName: string;
   pwd: string;
   private deferredPrompt;
 
-  constructor(private router: Router, private authGuardService: AuthGuardService) {
+  constructor(private router: Router, private authGuardService: AuthGuardService, public alertController: AlertController) {
     // Initialize deferredPrompt for use later to show browser install prompt.
     window.addEventListener('beforeinstallprompt', (e) => {
       // Standard installieren Message abfangen
@@ -37,7 +38,7 @@ export class LoginPage implements OnInit, ViewWillEnter, ViewWillLeave{
   */
   ionViewWillLeave(): void {
     this.usrName = '';
-    this.pwd = '';    
+    this.pwd = '';
   }
 
   ngOnInit() {
@@ -48,7 +49,7 @@ export class LoginPage implements OnInit, ViewWillEnter, ViewWillLeave{
     document.body.style.setProperty('--toggleHead', '#ffffff');
   }
 
- 
+
 
   /*
   Öffnet das PWA Installationsfenster des Browsers
@@ -61,9 +62,31 @@ export class LoginPage implements OnInit, ViewWillEnter, ViewWillLeave{
   Prüft Login-Daten mit AuthGuardService => wenn erfolgreich weiterleitung auf app
   */
   login() {
-    console.log('User: ' + this.usrName + ' Password ' + this.pwd);
-    this.authGuardService.authenticate(this.usrName, this.pwd);
-    this.router.navigate(['/app']);
+    const loginSuccessfull = this.authGuardService.authenticate(this.usrName, this.pwd);
+
+    if (loginSuccessfull) {
+      this.router.navigate(['/app']);
+    }
+    else {
+      this.usrName = "";
+      this.pwd = ""
+      this.showWrongLoginAlert();
+    }
+  }
+
+  /*
+  Shows alert when user enters wrong credentials
+  */
+  async showWrongLoginAlert() {
+    const alert = await this.alertController.create({
+      cssClass: 'my-custom-class',
+      header: 'Login fehlgeschlagen!',
+      subHeader: 'Benutzername oder Passwort ungültig.',
+      message: 'Achten Sie auf korrekte Groß- und Kleinschreibung.',
+      buttons: ['OK']
+    });
+
+    await alert.present();
   }
 
   /*
