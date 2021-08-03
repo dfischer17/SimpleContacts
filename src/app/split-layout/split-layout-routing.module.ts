@@ -7,7 +7,7 @@ import { SplitLayoutPage } from './split-layout.page';
 const routes: Routes = [
   {
     path: '',
-    redirectTo: 'about',
+    redirectTo: 'contacts',
     pathMatch: 'full'
   },
   {
@@ -17,7 +17,10 @@ const routes: Routes = [
       {
         path: 'about',
         loadChildren: () => import('../about/about.module').then(m => m.AboutPageModule),
-        canActivate: [AuthGuardService]
+        canActivate: [AuthGuardService],
+        data: {
+          role: 'ADMIN'
+        }
       },
       {
         path: 'contacts',

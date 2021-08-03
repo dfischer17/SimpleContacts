@@ -1,44 +1,39 @@
-import { Inject, Injectable } from '@angular/core';
-import { Router, CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot, UrlTree } from "@angular/router";
-import { Observable } from 'rxjs';
+import { Injectable } from '@angular/core';
+import { Router, CanActivate, ActivatedRouteSnapshot } from "@angular/router";
+import { filter, map, take } from 'rxjs/operators';
+import { AuthService } from '../auth/auth.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthGuardService implements CanActivate {
-  // Login data for access
-  private usrName = "Finn";
-  private pwd = "asdf"
-  private authenticated: boolean;
 
-  constructor(private router: Router,) { }
+  constructor(private authService: AuthService, private router: Router,) { }
 
-  canActivate(): boolean {
-    if (!this.authenticated) {
-      this.router.navigate(["login"]);
-      return false;
-    }
-    return true;
+  canActivate(route: ActivatedRouteSnapshot) {
+    const expectedRole = route.data?.role;
+
+    return this.authService.getUser().pipe(
+      filter(val => val !== null),
+      take(1),
+      map(user => {
+        if (!user) {
+          return this.router.parseUrl('/');
+        }
+        else {
+          const role = user['role'];
+
+          if (!expectedRole || expectedRole == role) {
+            return true;
+          }
+          else {
+            this.router.navigateByUrl('login');
+            alert('Access denied');
+            return false;
+          }
+        }
+      })
+    );
   }
 
-  /*
-  Checks Username and password and enables canActivate if correct
-  */
-  authenticate(userName: string, password: string): boolean {
-    if (userName === this.usrName && password === this.pwd) {
-      this.authenticated = true;
-      return true;
-    }
-    else {
-      this.authenticated = false;
-      return false;
-    }
-  }
-
-  /*
-  Logout the user
-  */
-  logout() {
-    this.authenticated = false;
-  }
 }

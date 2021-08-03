@@ -1,8 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpHandlerService } from 'src/app/services/http-handler.service';
-import { CompanyContactComponent } from 'src/app/components/company-contact/company-contact.component';
 import { Contact } from 'src/app/interfaces/contact';
-import { Address } from 'src/app/interfaces/address';
 import { ModalController } from '@ionic/angular';
 import { PersonDetailPage } from '../person-detail/person-detail.page';
 import { CompanyDetailPage } from '../company-detail/company-detail.page';
