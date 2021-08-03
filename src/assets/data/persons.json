@@ -82,7 +82,7 @@
             "Familienname":"Wurm",
             "Vorname":"Jakob",
             "Geburtsdatum":"1989-01-13",
-            "Geschlecht":1
+            "Geschlecht":3
          }
       ],
       "Adresse":[
@@ -348,7 +348,7 @@
             "Familienname":"Huber",
             "Vorname":"Anton",
             "Geburtsdatum":"1970-06-04",
-            "Geschlecht":1
+            "Geschlecht":3
          }
       ],
       "Adresse":[
@@ -7606,7 +7606,7 @@
             "Familienname":"Ebner",
             "Vorname":"Jan",
             "Geburtsdatum":"1969-10-15",
-            "Geschlecht":1
+            "Geschlecht":3
          }
       ],
       "Adresse":[
@@ -11064,7 +11064,7 @@
             "Familienname":"Holzer",
             "Vorname":"Lukas",
             "Geburtsdatum":"1987-07-16",
-            "Geschlecht":1
+            "Geschlecht":3
          }
       ],
       "Adresse":[
