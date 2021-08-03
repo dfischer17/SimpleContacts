@@ -89,11 +89,24 @@ export class ContactsPage implements OnInit {
   Sorts the contacts either by lastname or companyname depending on type
   */
   private sortContacts(a: Contact, b: Contact) {
-    if (a.hasOwnProperty('lastname')) {
+    // Compare two persons
+    if (a.companyname === undefined && b.companyname === undefined) {
       return ('' + a.lastname).localeCompare(b.lastname);
     }
-    else {
+
+    // Compare two companies
+    else if (a.lastname === undefined && b.lastname === undefined) {
       return ('' + a.companyname).localeCompare(b.companyname);
+    }
+
+    // Compare person with company
+    else if (a.companyname === undefined && b.lastname === undefined) {
+      return ('' + a.lastname).localeCompare(b.companyname);
+    }
+
+    // Compare company with person
+    else {
+      return ('' + a.companyname).localeCompare(b.lastname);
     }
   }
 
@@ -103,7 +116,7 @@ export class ContactsPage implements OnInit {
     if ($event.detail.side == 'start') {
       console.log('call ' + this.getFirstPhonenumber(contact.contactOptions));
       window.open('tel:' + this.getFirstPhonenumber(contact.contactOptions), "_self");
-      this.closeAllItems(item)      
+      this.closeAllItems(item)
     } else {
       console.log('email ' + this.getFirstEmailAddress(contact.contactOptions));
       window.open('mailto:' + this.getFirstEmailAddress(contact.contactOptions), "_self");
