@@ -15,17 +15,17 @@ const routes: Routes = [
     component: SplitLayoutPage,
     children: [
       {
-        path: 'about',
-        loadChildren: () => import('../about/about.module').then(m => m.AboutPageModule),
+        path: 'contacts',
+        loadChildren: () => import('../pages/contacts/contacts.module').then(m => m.ContactsPageModule),
+        canActivate: [AuthGuardService]
+      },
+      {
+        path: 'secret',
+        loadChildren: () => import('../pages/secret/secret.module').then( m => m.SecretPageModule),
         canActivate: [AuthGuardService],
         data: {
           role: 'ADMIN'
         }
-      },
-      {
-        path: 'contacts',
-        loadChildren: () => import('../pages/contacts/contacts.module').then(m => m.ContactsPageModule),
-        canActivate: [AuthGuardService]
       },
       {
         path: 'settings',
