@@ -5,6 +5,7 @@ import { ModalController } from '@ionic/angular';
 import { PersonDetailPage } from '../person-detail/person-detail.page';
 import { CompanyDetailPage } from '../company-detail/company-detail.page';
 import { ContactOption } from 'src/app/interfaces/contact-option';
+import { LoadingController } from '@ionic/angular';
 
 @Component({
   selector: 'app-contacts',
@@ -15,14 +16,88 @@ export class ContactsPage implements OnInit {
   contacts: Contact[];
   searchTerm: string;
 
-  constructor(private httpHandler: HttpHandlerService, private modalController: ModalController) { }
+  constructor(private httpHandler: HttpHandlerService, private modalController: ModalController, public loadingCtrl: LoadingController) { }
 
   ngOnInit() {
-    // Load Contacts
-    this.httpHandler.loadSampleData().toPromise().then(data => {
-      this.contacts = this.convertRequestData(data).sort((a, b) => this.sortContacts(a, b));
+    this.loadContacts();
+  }
+
+  /*
+  Displays spinning loading-indicator while contacts are loaded
+  */
+  loadContacts() {
+    this.loadingCtrl.create({
+      message: 'Lade Kontakte...',
+      translucent: true
+    }).then((res) => {
+      res.present();
+      this.handleLoadContacts();
     });
   }
+
+  /*
+  Loads contacts and hides loading-indicator when finished
+  */
+  handleLoadContacts() {
+    this.httpHandler.loadSampleData().toPromise().then(data => {
+      this.contacts = this.convertRequestData(data).sort((a, b) => this.sortContacts(a, b));
+      this.closeLoading();
+    });
+  }
+
+  /*
+  Dismisses loading-indicator
+  */
+  closeLoading() {
+    this.loadingCtrl.dismiss();
+  }
+
+  // Open contact-detail modal
+  async openModal(contact: Contact) {
+    let modal;
+
+    // Person
+    if (contact.contactType) {
+      modal = await this.modalController.create({
+        component: PersonDetailPage,
+        componentProps: { contact }
+      });
+    }
+
+    // Unternehmen
+    else {
+      modal = await this.modalController.create({
+        component: CompanyDetailPage,
+        componentProps: { contact }
+      });
+    }
+
+    return await modal.present();
+  }
+
+  // Handle swiping
+  swipeEvent($event, item, contact: Contact) {
+    console.log($event)
+    if ($event.detail.side == 'start') {
+      console.log('call ' + this.getFirstPhonenumber(contact.contactOptions));
+      window.open('tel:' + this.getFirstPhonenumber(contact.contactOptions), "_self");
+      this.closeAllItems(item)
+    } else {
+      console.log('email ' + this.getFirstEmailAddress(contact.contactOptions));
+      window.open('mailto:' + this.getFirstEmailAddress(contact.contactOptions), "_self");
+      this.closeAllItems(item)
+    }
+  }
+
+  // Close swipes after swiping
+  closeAllItems(item) {
+    let a = Array.prototype.slice.call(item.el.children)
+    a.map((val) => {
+      val.close();
+    })
+  }
+
+  /*HELPERS*/
 
   /*
   Konvertiert die Testdaten in ein für die Anwendung passendes Format
@@ -60,29 +135,6 @@ export class ContactsPage implements OnInit {
     return tempContacts;
   }
 
-  // Open contact-detail modal
-  async openModal(contact: Contact) {
-    let modal;
-
-    // Person
-    if (contact.contactType) {
-      modal = await this.modalController.create({
-        component: PersonDetailPage,
-        componentProps: { contact }
-      });
-    }
-
-    // Unternehmen
-    else {
-      modal = await this.modalController.create({
-        component: CompanyDetailPage,
-        componentProps: { contact }
-      });
-    }
-
-    return await modal.present();
-  }
-
   /*
   Sorts the contacts either by lastname or companyname depending on type
   */
@@ -106,28 +158,6 @@ export class ContactsPage implements OnInit {
     else {
       return ('' + a.companyname).localeCompare(b.lastname);
     }
-  }
-
-  // Handle contact item swiping
-  swipeEvent($event, item, contact: Contact) {
-    console.log($event)
-    if ($event.detail.side == 'start') {
-      console.log('call ' + this.getFirstPhonenumber(contact.contactOptions));
-      window.open('tel:' + this.getFirstPhonenumber(contact.contactOptions), "_self");
-      this.closeAllItems(item)
-    } else {
-      console.log('email ' + this.getFirstEmailAddress(contact.contactOptions));
-      window.open('mailto:' + this.getFirstEmailAddress(contact.contactOptions), "_self");
-      this.closeAllItems(item)
-    }
-  }
-
-  // Close swipe after swiping
-  closeAllItems(item) {
-    let a = Array.prototype.slice.call(item.el.children)
-    a.map((val) => {
-      val.close();
-    })
   }
 
   /*
