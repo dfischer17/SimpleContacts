@@ -1,5 +1,6 @@
-import { stringify } from '@angular/compiler/src/util';
 import { Component, OnInit } from '@angular/core';
+import { Storage } from '@capacitor/storage';
+import { UserPreferencesService } from '../services/user-preferences/user-preferences.service';
 
 @Component({
   selector: 'app-settings',
@@ -10,16 +11,11 @@ export class SettingsPage implements OnInit {
   isDark: boolean;
   selectedAccentColor: string;
 
-  constructor() {}
+  constructor(private usrPreferences: UserPreferencesService) {}
 
   ngOnInit() {
     this.initDarkModeToggle();
-
-    //Accent colors
-    const blue = '#3880ff';
-    const red = '#eb4034';
-    const green = '#2dd36f'
-    const purple = '#cc00ff';
+    this.usrPreferences.initAccentColor();
   }
 
   /*
@@ -55,11 +51,19 @@ export class SettingsPage implements OnInit {
   }
 
   /*
-  Callback für das ChangeAccentColor-select
+  Callback für das ChangeAccentColor-select.
+  Ändert die bevorzugte Akzentfarbe und speichert sie Lokal
   */
   changeAccentColor() {
-    console.log('Accent-color changed to: ', this.selectedAccentColor);
-    document.body.style.setProperty('--accentColor', this.selectedAccentColor);
+    const newAccentColor = this.selectedAccentColor;
+
+    console.log('Accent-color changed to: ', newAccentColor);
+    document.body.style.setProperty('--accentColor', newAccentColor);
     document.body.style.setProperty('--toggleHead', '#ffffff');
+
+    Storage.set({
+      key: 'preferedAccentColor',
+      value: newAccentColor,
+    });
   }
 }

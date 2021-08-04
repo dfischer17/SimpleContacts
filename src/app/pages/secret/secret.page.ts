@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { UserPreferencesService } from 'src/app/services/user-preferences/user-preferences.service';
 
 @Component({
   selector: 'app-secret',
@@ -7,9 +8,9 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SecretPage implements OnInit {
 
-  constructor() { }
+  constructor(private usrPreferences: UserPreferencesService) { }
 
   ngOnInit() {
+    this.usrPreferences.initAccentColor();
   }
-
 }

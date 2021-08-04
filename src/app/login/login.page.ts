@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AlertController } from '@ionic/angular';
 import { AuthService } from '../services/auth/auth.service';
+import { UserPreferencesService } from '../services/user-preferences/user-preferences.service';
 
 
 @Component({
@@ -14,7 +15,7 @@ export class LoginPage implements OnInit {
   pwd: string;
   private deferredPrompt;
 
-  constructor(private router: Router, public alertController: AlertController, private auth: AuthService) {
+  constructor(private router: Router, public alertController: AlertController, private auth: AuthService, private usrPreferences: UserPreferencesService) {
     // Initialize deferredPrompt for use later to show browser install prompt.
     window.addEventListener('beforeinstallprompt', (e) => {
       // Standard installieren Message abfangen
@@ -28,10 +29,7 @@ export class LoginPage implements OnInit {
 
   ngOnInit() {
     this.addPrefersColorSchemeListener();
-
-    // Init accentColors (not persistent yet!)
-    document.body.style.setProperty('--accentColor', '#3880ff');
-    document.body.style.setProperty('--toggleHead', '#ffffff');
+    this.usrPreferences.initAccentColor();
   }
 
   /*

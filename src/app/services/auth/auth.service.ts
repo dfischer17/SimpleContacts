@@ -38,7 +38,7 @@ export class AuthService {
     if (username === 'user' && password === 'user') {
       userObj = {
         name: 'Tony Test',
-        role: 'USER',
+        role: 'USER',    
       }
     }
     else if (username === 'admin' && password === 'admin') {

@@ -6,6 +6,7 @@ import { PersonDetailPage } from '../person-detail/person-detail.page';
 import { CompanyDetailPage } from '../company-detail/company-detail.page';
 import { ContactOption } from 'src/app/interfaces/contact-option';
 import { LoadingController } from '@ionic/angular';
+import { UserPreferencesService } from 'src/app/services/user-preferences/user-preferences.service';
 
 @Component({
   selector: 'app-contacts',
@@ -16,11 +17,12 @@ export class ContactsPage implements OnInit {
   contacts: Contact[];
   searchTerm: string;
 
-  constructor(private httpHandler: HttpHandlerService, private modalController: ModalController, public loadingCtrl: LoadingController) { }
+  constructor(private httpHandler: HttpHandlerService, private modalController: ModalController, public loadingCtrl: LoadingController, private usrPreferences: UserPreferencesService) { }
 
   ngOnInit() {
     this.loadContacts();
-  }
+    this.usrPreferences.initAccentColor();
+  }  
 
   /*
   Displays spinning loading-indicator while contacts are loaded
