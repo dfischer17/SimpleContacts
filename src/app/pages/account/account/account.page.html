@@ -1,0 +1,16 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>Konto</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div style="display: flex; align-items: center;justify-content: center;flex-direction: column; margin-top: 5rem;">
+    <ion-icon name="person" style="font-size:150px"></ion-icon>
+    <ion-label id="nameLabel" style='color:var(--accentColor)'>{{currentUser.name}}</ion-label>
+    <ion-label id="roleLabel">Rolle: {{currentUser.role}}</ion-label>
+  </div>
+</ion-content>

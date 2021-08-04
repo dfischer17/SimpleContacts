@@ -33,6 +33,11 @@ const routes: Routes = [
         canActivate: [AuthGuardService]
       },
       {
+        path: 'account',
+        loadChildren: () => import('../pages/account/account/account.module').then(m => m.AccountPageModule),
+        canActivate: [AuthGuardService]
+      },
+      {
         path: 'logout',
         loadChildren: () => import('../login/login.module').then(m => m.LoginPageModule),
         canActivate: [AuthGuardService]

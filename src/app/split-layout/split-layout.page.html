@@ -6,9 +6,9 @@
         <ion-title>Menu</ion-title>
       </ion-toolbar>
     </ion-header>
-    <ion-content>  
+    <ion-content>
       <ion-menu-toggle autoHide="false">
-        <ion-item routerLink="/app/contacts" routerDirection="root" routerLinkActive="active-link">          
+        <ion-item routerLink="/app/contacts" routerDirection="root" routerLinkActive="active-link">
           <ion-label>
             Kontakte
           </ion-label>
@@ -17,20 +17,29 @@
       </ion-menu-toggle>
 
       <ion-menu-toggle autoHide="false" *appHasPermission="'ADMIN'">
-        <ion-item routerLink="/app/secret" routerDirection="root" routerLinkActive="active-link">          
+        <ion-item routerLink="/app/secret" routerDirection="root" routerLinkActive="active-link">
           <ion-label>
             Sensible Daten
           </ion-label>
-          <ion-icon name="lock-closed"></ion-icon>
+          <ion-icon name="lock-closed-outline"></ion-icon>
         </ion-item>
       </ion-menu-toggle>
-      
+
       <ion-menu-toggle autoHide="false">
         <ion-item routerLink="/app/settings" routerDirection="root" routerLinkActive="active-link">
           <ion-label>
             Einstellungen
           </ion-label>
           <ion-icon name="settings-outline"></ion-icon>
+        </ion-item>
+      </ion-menu-toggle>
+
+      <ion-menu-toggle autoHide="false">
+        <ion-item routerLink="/app/account" routerDirection="root" routerLinkActive="active-link">
+          <ion-label>
+            Account
+          </ion-label>
+          <ion-icon name="person-circle-outline"></ion-icon>
         </ion-item>
       </ion-menu-toggle>
 
@@ -42,7 +51,7 @@
           <ion-icon name="log-out-outline"></ion-icon>
         </ion-item>
       </ion-menu-toggle>
-      
+
     </ion-content>
   </ion-menu>
 
