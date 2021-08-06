@@ -1,11 +1,13 @@
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 import { AuthGuardService } from './services/guards/auth-guard.service';
+import { IntroGuard } from './services/guards/intro/intro.guard';
 
 const routes: Routes = [
   {
     path: 'login',
-    loadChildren: () => import('./login/login.module').then( m => m.LoginPageModule)
+    loadChildren: () => import('./login/login.module').then( m => m.LoginPageModule),
+    canActivate: [IntroGuard]
   },
   {
     path: 'app',
@@ -17,6 +19,11 @@ const routes: Routes = [
     redirectTo: 'login',
     pathMatch: 'full'
   },
+  {
+    path: 'intro',
+    loadChildren: () => import('./pages/intro/intro/intro.module').then( m => m.IntroPageModule)
+  },
+
 ];
 
 @NgModule({
