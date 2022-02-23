@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AlertController } from '@ionic/angular';
-import { AuthService } from '../services/auth/auth.service';
-import { UserPreferencesService } from '../services/user-preferences/user-preferences.service';
+import { AuthService } from '../core/services/auth.service';
+import { UserPreferencesService } from '../core/services/user-preferences.service';
 
 
 @Component({

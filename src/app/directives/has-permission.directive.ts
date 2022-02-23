@@ -1,5 +1,5 @@
 import { Directive, Input, TemplateRef, ViewContainerRef } from '@angular/core';
-import { AuthService } from '../services/auth/auth.service';
+import { AuthService } from '../core/services/auth.service';
 
 @Directive({
   selector: '[appHasPermission]'
@@ -15,11 +15,11 @@ export class HasPermissionDirective {
     this.authService.getUser().subscribe(_ => {
       if (this.authService.hasRole(this.role)) {
         this.viewContainer.createEmbeddedView(this.templateRef);
-        console.log('Access only allowed for admin-role')
+        console.log('Access only allowed for admin-role');
       }
       else {
         this.viewContainer.clear();
-        console.log('Access granted')
+        console.log('Access granted');
       }
     });
   }

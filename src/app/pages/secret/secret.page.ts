@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { UserPreferencesService } from 'src/app/services/user-preferences/user-preferences.service';
+import { UserPreferencesService } from '../../core/services/user-preferences.service';
 
 @Component({
   selector: 'app-secret',

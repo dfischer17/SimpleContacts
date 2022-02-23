@@ -4,7 +4,7 @@ import { HttpClient } from '@angular/common/http';
 @Injectable({
   providedIn: 'root'
 })
-export class HttpHandlerService {
+export class DataService {
 
   constructor(private httpClient: HttpClient) { }
 
@@ -16,4 +16,3 @@ export class HttpHandlerService {
     return this.httpClient.get('./assets/data/persons.json');
   }
 }
-

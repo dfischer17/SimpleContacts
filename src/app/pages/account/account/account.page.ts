@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { AuthService, User } from 'src/app/services/auth/auth.service';
-import { UserPreferencesService } from 'src/app/services/user-preferences/user-preferences.service';
+import { AuthService, User } from '../../../core/services/auth.service';
+import { UserPreferencesService } from '../../../core/services/user-preferences.service';
 
 @Component({
   selector: 'app-account',
@@ -14,10 +14,10 @@ export class AccountPage implements OnInit {
 
   ngOnInit() {
     this.usrPreferences.initAccentColor();
-    this.loadLoggedInUser();    
+    this.loadLoggedInUser();
   }
 
-  async loadLoggedInUser() {    
+  async loadLoggedInUser() {
     this.currentUser = this.authService.getUserSync();
   }
 }

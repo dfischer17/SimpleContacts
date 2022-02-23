@@ -13,7 +13,7 @@ export class UserPreferencesService {
     const { value } = await Storage.get({ key: 'preferedAccentColor' });
 
     // If no prefered accent-color is set use default
-    if (value === null) {   
+    if (value === null) {
       document.body.style.setProperty('--accentColor', '#3880ff');
       document.body.style.setProperty('--toggleHead', '#ffffff'); // Necassery to style ion-toggle correctly
       console.log('No prefered accent-color detected proceeding with default');

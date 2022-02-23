@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Storage } from '@capacitor/storage';
-import { INTRO_KEY } from 'src/app/services/guards/intro/intro.guard';
+import { INTRO_KEY } from 'src/app/core/guards/intro.guard';
 import { Router } from '@angular/router';
 
 @Component({
@@ -12,7 +12,7 @@ export class IntroPage implements OnInit {
 
   constructor(private router: Router) { }
 
-  ngOnInit() {   
+  ngOnInit() {
   }
 
   async closeIntro() {

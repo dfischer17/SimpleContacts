@@ -1,12 +1,12 @@
 import { Component, OnInit } from '@angular/core';
-import { HttpHandlerService } from 'src/app/services/http-handler.service';
-import { Contact } from 'src/app/interfaces/contact';
+import { DataService } from '../../core/services/data.service';
+import { Contact } from 'src/app/models/contact';
 import { ModalController } from '@ionic/angular';
 import { PersonDetailPage } from '../person-detail/person-detail.page';
 import { CompanyDetailPage } from '../company-detail/company-detail.page';
-import { ContactOption } from 'src/app/interfaces/contact-option';
+import { ContactOption } from 'src/app/models/contact-option';
 import { LoadingController } from '@ionic/angular';
-import { UserPreferencesService } from 'src/app/services/user-preferences/user-preferences.service';
+import { UserPreferencesService } from '../../core/services/user-preferences.service';
 
 @Component({
   selector: 'app-contacts',
@@ -17,12 +17,12 @@ export class ContactsPage implements OnInit {
   contacts: Contact[];
   searchTerm: string;
 
-  constructor(private httpHandler: HttpHandlerService, private modalController: ModalController, public loadingCtrl: LoadingController, private usrPreferences: UserPreferencesService) { }
+  constructor(private dataService: DataService, private modalController: ModalController, public loadingCtrl: LoadingController, private usrPreferences: UserPreferencesService) { }
 
   ngOnInit() {
     this.loadContacts();
     this.usrPreferences.initAccentColor();
-  }  
+  }
 
   /*
   Displays spinning loading-indicator while contacts are loaded
@@ -41,7 +41,7 @@ export class ContactsPage implements OnInit {
   Loads contacts and hides loading-indicator when finished
   */
   handleLoadContacts() {
-    this.httpHandler.loadSampleData().toPromise().then(data => {
+    this.dataService.loadSampleData().toPromise().then(data => {
       this.contacts = this.convertRequestData(data).sort((a, b) => this.sortContacts(a, b));
       this.closeLoading();
     });

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ModalController, NavParams } from '@ionic/angular';
-import { Contact } from 'src/app/interfaces/contact';
+import { Contact } from 'src/app/models/contact';
 
 @Component({
   selector: 'app-person-detail',

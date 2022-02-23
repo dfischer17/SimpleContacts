@@ -23,6 +23,4 @@ export class IntroGuard implements CanActivate {
       return true;
     }
   }
-
-
 }

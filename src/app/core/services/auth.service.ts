@@ -15,6 +15,7 @@ export interface User {
   providedIn: 'root'
 })
 export class AuthService {
+
   private currentUser: BehaviorSubject<any> = new BehaviorSubject(null);
 
   constructor(private router: Router) {
@@ -29,7 +30,7 @@ export class AuthService {
       else {
         this.currentUser.next(false);
       }
-    })
+    });
   }
 
   login(username: string, password: string) {
@@ -38,14 +39,14 @@ export class AuthService {
     if (username === 'user' && password === 'user') {
       userObj = {
         name: 'Daniel Fischer',
-        role: 'USER',    
-      }
+        role: 'USER',
+      };
     }
     else if (username === 'admin' && password === 'admin') {
       userObj = {
         name: 'Gerhard Wührer',
         role: 'ADMIN',
-      }
+      };
     }
 
     return of(userObj).pipe(
@@ -65,9 +66,9 @@ export class AuthService {
   }
 
   async logout() {
-    await Storage.remove({key: TOKEN_KEY});
+    await Storage.remove({ key: TOKEN_KEY });
     this.currentUser.next(false);
-    this.router.navigateByUrl('/login', {replaceUrl: true});
+    this.router.navigateByUrl('/login', { replaceUrl: true });
   }
 
   hasRole(role: string): boolean {
