@@ -7,10 +7,10 @@ import { Contact } from 'src/app/models/contact';
   styleUrls: ['./person-contact.component.scss'],
 })
 export class PersonContactComponent implements OnInit {
+
   @Input() person: Contact;
 
   constructor() {}
 
   ngOnInit() {}
-
 }

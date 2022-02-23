@@ -1,0 +1,14 @@
+<ion-item>
+  <ion-icon name="person" class="entryIcon"></ion-icon>
+  <div>
+    <div class="container">
+      <ion-label>{{person.lastname}}</ion-label>
+      <ion-label>{{person.firstname}}</ion-label>
+    </div>
+    <div class="container">
+      <ion-label>{{person.address[0].postalCode}}</ion-label>
+      <ion-label>{{person.address[0].city}}</ion-label>
+      <ion-label>{{person.address[0].streetName}} {{person.address[0].orientationNumber}}</ion-label>
+    </div>
+  </div>
+</ion-item>

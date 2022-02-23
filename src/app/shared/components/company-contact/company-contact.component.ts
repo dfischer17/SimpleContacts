@@ -7,6 +7,7 @@ import { Contact } from 'src/app/models/contact';
   styleUrls: ['./company-contact.component.scss'],
 })
 export class CompanyContactComponent implements OnInit {
+
   @Input() company: Contact;
 
   constructor() { }

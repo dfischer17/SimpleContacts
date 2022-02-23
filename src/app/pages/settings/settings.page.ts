@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Storage } from '@capacitor/storage';
-import { UserPreferencesService } from '../core/services/user-preferences.service';
+import { UserPreferencesService } from '../../core/services/user-preferences.service';
 
 @Component({
   selector: 'app-settings',
