@@ -6,7 +6,7 @@ import { IntroGuard } from './core/guards/intro.guard';
 const routes: Routes = [
   {
     path: 'login',
-    loadChildren: () => import('./login/login.module').then( m => m.LoginPageModule),
+    loadChildren: () => import('./pages/login/login.module').then( m => m.LoginPageModule),
     canActivate: [IntroGuard]
   },
   {
@@ -23,6 +23,11 @@ const routes: Routes = [
     path: 'intro',
     loadChildren: () => import('./pages/intro/intro/intro.module').then( m => m.IntroPageModule)
   },
+  {
+    path: 'login',
+    loadChildren: () => import('./pages/login/login.module').then( m => m.LoginPageModule)
+  },
+
 
 ];
 

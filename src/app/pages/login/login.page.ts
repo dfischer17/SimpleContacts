@@ -1,9 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AlertController } from '@ionic/angular';
-import { AuthService } from '../core/services/auth.service';
-import { UserPreferencesService } from '../core/services/user-preferences.service';
-
+import { AuthService } from 'src/app/core/services/auth.service';
+import { UserPreferencesService } from 'src/app/core/services/user-preferences.service';
 
 @Component({
   selector: 'app-login',
@@ -11,6 +10,7 @@ import { UserPreferencesService } from '../core/services/user-preferences.servic
   styleUrls: ['./login.page.scss'],
 })
 export class LoginPage implements OnInit {
+
   usrName: string;
   pwd: string;
   private deferredPrompt;
@@ -44,7 +44,7 @@ export class LoginPage implements OnInit {
   */
   login() {
     this.auth.login(this.usrName, this.pwd).subscribe(_ => {
-      this.router.navigateByUrl('app', {replaceUrl: true});
+      this.router.navigateByUrl('app', { replaceUrl: true });
     });
 
     if (this.auth.getUserSync() === undefined) {

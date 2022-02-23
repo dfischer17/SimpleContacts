@@ -1,30 +1,30 @@
 $height100: 100%;
 
 ion-grid {
-  width: 100%;
-  height: $height100;
-  margin-top: 10rem;
+    width: 100%;
+    height: $height100;
+    margin-top: 10rem;
 }
 
 ion-row {
-  height: $height100;
+    height: $height100;
 }
 
 // Sets color when input of label is focused
 ion-item.item-has-focus > ion-label {
-  color: var(--accentColor) !important;
+    color: var(--accentColor) !important;
 }
 
 // Put login at top in mobile view
 @media (min-width: 240px) and (max-width: 768px) {
-  ion-grid {
-    margin-top: 0;
-  }
+    ion-grid {
+        margin-top: 0;
+    }
 }
 
 // Hides install-button when app is installed
 @media all and (display-mode: standalone) {
-  .installBtn {
-    display: none;
-  }
+    .installBtn {
+        display: none;
+    }
 }
