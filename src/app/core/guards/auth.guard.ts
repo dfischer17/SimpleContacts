@@ -20,9 +20,9 @@ export class AuthGuard implements CanActivate {
           return this.router.parseUrl('/');
         }
         else {
-          const role = user['role'];
+          const role = user.role;
 
-          if (!expectedRole || expectedRole == role) {
+          if (!expectedRole || expectedRole === role) {
             return true;
           }
           else {

@@ -16,5 +16,5 @@ export interface Contact {
 
     // Properties für Unternehmen
     companyname?: string;
-    contactPersons: ContactPerson[];
+    contactPersons?: ContactPerson[];
 }

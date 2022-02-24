@@ -6,9 +6,9 @@ import { IonicModule } from '@ionic/angular';
 import { ContactsPageRoutingModule } from './contacts-routing.module';
 import { ContactsPage } from './contacts.page';
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
-import { PersonDetailPage } from '../person-detail/person-detail.page';
-import { CompanyDetailPage } from '../company-detail/company-detail.page';
 import { SharedModule } from 'src/app/shared/shared.module';
+import { CompanyDetailPageModule } from '../company-detail/company-detail.module';
+import { PersonDetailPageModule } from '../person-detail/person-detail.module';
 
 @NgModule({
   imports: [
@@ -17,8 +17,10 @@ import { SharedModule } from 'src/app/shared/shared.module';
     IonicModule,
     SharedModule,
     ContactsPageRoutingModule,
-    Ng2SearchPipeModule
+    Ng2SearchPipeModule,
+    CompanyDetailPageModule,
+    PersonDetailPageModule
   ],
-  declarations: [ContactsPage, PersonDetailPage, CompanyDetailPage]
+  declarations: [ContactsPage]
 })
 export class ContactsPageModule {}
