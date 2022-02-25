@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../core/services/auth.service';
+import { AuthenticationService } from '../core/services/authentication.service';
 
 @Component({
   selector: 'app-split-layout',
@@ -8,12 +9,13 @@ import { AuthService } from '../core/services/auth.service';
 })
 export class SplitLayoutPage implements OnInit {
 
-  constructor(private authService: AuthService) { }
+  constructor(private authService: AuthService, private authenticationService: AuthenticationService) { }
 
   ngOnInit() {
   }
 
   logout() {
-    this.authService.logout();
+    //this.authService.logout();
+    this.authenticationService.logout();
   }
 }

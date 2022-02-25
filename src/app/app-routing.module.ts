@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 import { AuthGuard } from './core/guards/auth.guard';
+import { AuthenticationGuard } from './core/guards/authentication.guard';
 import { IntroGuard } from './core/guards/intro.guard';
 
 const routes: Routes = [
@@ -12,7 +13,7 @@ const routes: Routes = [
   {
     path: 'app',
     loadChildren: () => import('./split-layout/split-layout.module').then( m => m.SplitLayoutPageModule),
-    canActivate: [AuthGuard]
+    canActivate: [AuthenticationGuard]
   },
   {
     path: '',

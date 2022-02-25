@@ -10,11 +10,11 @@
       <ion-col size-md="6" size-lg="4" size-xs="12">
         <ion-item>
           <ion-label position="stacked">Benutzername</ion-label>
-          <ion-input [(ngModel)]="usrName" placeholder="Benutzername eingeben"></ion-input>
+          <ion-input [(ngModel)]="username" placeholder="Benutzername eingeben"></ion-input>
         </ion-item>
         <ion-item class="ion-margin-bottom">
           <ion-label position="stacked">Passwort</ion-label>
-          <ion-input type="password" [(ngModel)]="pwd" placeholder="Passwort eingeben"></ion-input>
+          <ion-input type="password" [(ngModel)]="password" placeholder="Passwort eingeben"></ion-input>
         </ion-item>
         <ion-button class="ion-margin-bottom" expand="block" shape="round" (click) ="login()" style='--background:var(--accentColor)'>Anmelden</ion-button>
         <ion-button  class="installBtn" color="secondary" expand="block" shape="round" (click) ="install()">Installieren</ion-button>

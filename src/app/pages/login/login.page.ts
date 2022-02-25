@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { AlertController } from '@ionic/angular';
 import { AuthService } from 'src/app/core/services/auth.service';
 import { UserPreferencesService } from 'src/app/core/services/user-preferences.service';
+import { AuthenticationService } from 'src/app/core/services/authentication.service';
 
 @Component({
   selector: 'app-login',
@@ -10,12 +11,13 @@ import { UserPreferencesService } from 'src/app/core/services/user-preferences.s
   styleUrls: ['./login.page.scss'],
 })
 export class LoginPage implements OnInit {
+  returnUrl: string;
+  username: string;
+  password: string;
+  private deferredPrompt; // doesn't work properly!
 
-  usrName: string;
-  pwd: string;
-  private deferredPrompt;
-
-  constructor(private router: Router, public alertController: AlertController, private auth: AuthService, private usrPreferences: UserPreferencesService) {
+  // eslint-disable-next-line max-len
+  constructor(private router: Router, private route: ActivatedRoute, public alertController: AlertController, private auth: AuthService, private usrPreferences: UserPreferencesService, private jwtAuthService: AuthenticationService) {
     // Initialize deferredPrompt for use later to show browser install prompt.
     window.addEventListener('beforeinstallprompt', (e) => {
       // Standard installieren Message abfangen
@@ -28,6 +30,8 @@ export class LoginPage implements OnInit {
   }
 
   ngOnInit() {
+    this.jwtAuthService.logout(); // reset login
+    this.returnUrl = this.route.snapshot?.queryParams?.returnUrl || '/app';
     this.addPrefersColorSchemeListener();
     this.usrPreferences.initAccentColor();
   }
@@ -43,13 +47,24 @@ export class LoginPage implements OnInit {
   Prüft Login-Daten mit AuthService => wenn erfolgreich weiterleitung auf app
   */
   login() {
-    this.auth.login(this.usrName, this.pwd).subscribe(_ => {
-      this.router.navigateByUrl('app', { replaceUrl: true });
-    });
+    // this.auth.login(this.usrName, this.pwd).subscribe(_ => {
+    //   this.router.navigateByUrl('app', { replaceUrl: true });
+    // });
 
-    if (this.auth.getUserSync() === undefined) {
-      this.showWrongLoginAlert();
-    }
+    // if (this.auth.getUserSync() === undefined) {
+    //   this.showWrongLoginAlert();
+    // }
+
+    console.log(`LoginPage::login`);
+    this.jwtAuthService.login(this.username, this.password)
+      .subscribe(
+        x => {
+          console.log(x);
+          this.router.navigate([this.returnUrl]);
+          //this.router.navigateByUrl('/app');
+        },
+        error => this.showWrongLoginAlert(),
+      );
   }
 
   /*

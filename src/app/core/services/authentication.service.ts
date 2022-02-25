@@ -8,14 +8,15 @@ import { AuthenticationDto } from 'src/app/models/authentication-dto';
   providedIn: 'root'
 })
 export class AuthenticationService {
-  private urlBase = 'http://localhost:5000/authentication';
+  private urlBase = 'https://localhost:5001/api/Authentication';
 
   constructor(private httpClient: HttpClient) { }
 
   login(username: string, password: string): Observable<AuthenticationDto> {
     console.log(`AuthenticationService::login ${username}`);
     const url = `${this.urlBase}/authenticate`;
-    return this.httpClient.post<AuthenticationDto>(url, { username, password })
+    // eslint-disable-next-line object-shorthand
+    return this.httpClient.post<AuthenticationDto>(url, { name: username, password: password })
       .pipe(
         tap(user => {
           if (user && user.token) {

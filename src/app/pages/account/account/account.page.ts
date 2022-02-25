@@ -8,16 +8,21 @@ import { UserPreferencesService } from '../../../core/services/user-preferences.
   styleUrls: ['./account.page.scss'],
 })
 export class AccountPage implements OnInit {
-  currentUser: User;
+  currentUser: any;
 
   constructor(private authService: AuthService, private usrPreferences: UserPreferencesService) { }
 
   ngOnInit() {
     this.usrPreferences.initAccentColor();
-    this.loadLoggedInUser();
+    //this.loadLoggedInUser();
+    this.loadCurrentUser();
   }
 
-  async loadLoggedInUser() {
-    this.currentUser = this.authService.getUserSync();
+  // async loadLoggedInUser() {
+  //   this.currentUser = this.authService.getUserSync();
+  // }
+
+  loadCurrentUser() {
+    this.currentUser = JSON.parse(sessionStorage.getItem('currentUser'));
   }
 }

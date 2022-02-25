@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { AuthGuard } from '../core/guards/auth.guard';
+import { AuthenticationGuard } from '../core/guards/authentication.guard';
 
 import { SplitLayoutPage } from './split-layout.page';
 
@@ -17,12 +18,12 @@ const routes: Routes = [
       {
         path: 'contacts',
         loadChildren: () => import('../pages/contacts/contacts.module').then(m => m.ContactsPageModule),
-        canActivate: [AuthGuard]
+        canActivate: [AuthenticationGuard]
       },
       {
         path: 'secret',
         loadChildren: () => import('../pages/secret/secret.module').then( m => m.SecretPageModule),
-        canActivate: [AuthGuard],
+        canActivate: [AuthenticationGuard],
         data: {
           role: 'ADMIN'
         }
@@ -30,17 +31,17 @@ const routes: Routes = [
       {
         path: 'settings',
         loadChildren: () => import('../pages/settings/settings.module').then(m => m.SettingsPageModule),
-        canActivate: [AuthGuard]
+        canActivate: [AuthenticationGuard]
       },
       {
         path: 'account',
         loadChildren: () => import('../pages/account/account/account.module').then(m => m.AccountPageModule),
-        canActivate: [AuthGuard]
+        canActivate: [AuthenticationGuard]
       },
       {
         path: 'logout',
         loadChildren: () => import('../pages/login/login.module').then(m => m.LoginPageModule),
-        canActivate: [AuthGuard]
+        canActivate: [AuthenticationGuard]
       }
     ]
   }
