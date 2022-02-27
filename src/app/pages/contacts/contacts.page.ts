@@ -17,6 +17,7 @@ export class ContactsPage implements OnInit {
   contacts: Contact[];
   searchTerm: string;
 
+  // eslint-disable-next-line max-len
   constructor(private dataService: DataService, private modalController: ModalController, public loadingCtrl: LoadingController, private usrPreferences: UserPreferencesService) { }
 
   ngOnInit() {
@@ -42,8 +43,9 @@ export class ContactsPage implements OnInit {
   */
   handleLoadContacts() {
     this.dataService.loadSampleData().toPromise().then(data => {
-      this.contacts = this.convertRequestData(data).sort((a, b) => this.sortContacts(a, b));
+      this.contacts = data.sort((a, b) => this.sortContacts(a, b));
       this.closeLoading();
+      console.log(data);
     });
   }
 
@@ -59,7 +61,7 @@ export class ContactsPage implements OnInit {
     let modal;
 
     // Person
-    if (contact.contactType) {
+    if (!contact.contactType) {
       modal = await this.modalController.create({
         component: PersonDetailPage,
         componentProps: { contact }
@@ -102,57 +104,21 @@ export class ContactsPage implements OnInit {
   /*HELPERS*/
 
   /*
-  Konvertiert die Testdaten in ein für die Anwendung passendes Format
-  */
-  convertRequestData(requestData): Contact[] {
-    const tempContacts: Contact[] = [];
-
-    requestData.forEach(contact => {
-      tempContacts.push({
-        // Properties für Person und Unternehmen
-        contactType: contact.hasOwnProperty('Natuerlich'),
-        address: [
-          {
-            streetName: contact.Adresse[0].Strassenname,
-            orientationNumber: contact.Adresse[0].Orientierungsnummer,
-            postalCode: contact.Adresse[0].Postleitzahl,
-            city: contact.Adresse[0].Ortschaft,
-          }
-        ],
-
-        contactOptions: contact.Kontakte,
-
-        // Properties für Person
-        lastname: contact.Natuerlich?.[0].Familienname,
-        firstname: contact.Natuerlich?.[0].Vorname,
-        birthdate: contact.Natuerlich?.[0].Geburtsdatum,
-        gender: contact.Natuerlich?.[0].Geschlecht,
-
-        // Properties für Unternehmen
-        companyname: contact.Unternehmen?.[0].Name,
-        contactPersons: contact.Ansprechpartner,
-      });
-    });
-
-    return tempContacts;
-  }
-
-  /*
   Sorts the contacts either by lastname or companyname depending on type
   */
   private sortContacts(a: Contact, b: Contact) {
     // Compare two persons
-    if (a.companyname === undefined && b.companyname === undefined) {
+    if (a.companyname === null && b.companyname === null) {
       return ('' + a.lastname).localeCompare(b.lastname);
     }
 
     // Compare two companies
-    else if (a.lastname === undefined && b.lastname === undefined) {
+    else if (a.lastname === null && b.lastname === null) {
       return ('' + a.companyname).localeCompare(b.companyname);
     }
 
     // Compare person with company
-    else if (a.companyname === undefined && b.lastname === undefined) {
+    else if (a.companyname === null && b.lastname === null) {
       return ('' + a.lastname).localeCompare(b.companyname);
     }
 
@@ -165,15 +131,15 @@ export class ContactsPage implements OnInit {
   /*
   Get's the first callable contactOption of a contact
   */
-  getFirstPhonenumber(contactOptions: ContactOption[]) {
+  private getFirstPhonenumber(contactOptions: ContactOption[]) {
     let phoneNumber: string;
 
     contactOptions.forEach(function (contactOption) {
-      const option: number = contactOption.Kontaktart;
+      const option: number = contactOption.type;
 
       // Wenn Kontaktoption Tel-nummer zurückgeben
       if (option === 1 || option === 2 || option === 3) {
-        phoneNumber = contactOption.Kontaktdaten;
+        phoneNumber = contactOption.data;
       }
     });
 
@@ -183,15 +149,15 @@ export class ContactsPage implements OnInit {
   /*
   Get's the first emailable contactOption of a contact
   */
-  getFirstEmailAddress(contactOptions: ContactOption[]): string {
+  private getFirstEmailAddress(contactOptions: ContactOption[]): string {
     let email: string;
 
     contactOptions.forEach(function (contactOption) {
-      const option: number = contactOption.Kontaktart;
+      const option: number = contactOption.type;
 
       // Wenn Kontaktoption email zurückgeben
       if (option === 4) {
-        email = contactOption.Kontaktdaten;
+        email = contactOption.data;
       }
     });
 

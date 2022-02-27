@@ -16,9 +16,9 @@
       {{contact.lastname}} {{contact.firstname}}
 
       <!-- Symbol fuer jeweiliges Geschlecht anzeigen -->
-      <ion-icon name="male" *ngIf="contact.gender === 1"></ion-icon>
-      <ion-icon name="female" *ngIf="contact.gender === 2"></ion-icon>
-      <ion-icon name="transgender" *ngIf="contact.gender === 3"></ion-icon>
+      <ion-icon name="male" *ngIf="contact.gender === false"></ion-icon>
+      <ion-icon name="female" *ngIf="contact.gender === true"></ion-icon>
+      <!-- <ion-icon name="transgender" *ngIf="contact.gender === 3"></ion-icon> -->
     </ion-label>
   </div>
 
@@ -28,32 +28,32 @@
   </ion-item>
 
   <!-- Symbol und Link fuer jeweiligen Kontakttyp anzeigen -->
-  <ng-container *ngFor="let contactOption of contact.contactOptions" [ngSwitch]="contactOption.Kontaktart">
+  <ng-container *ngFor="let contactOption of contact.contactOptions" [ngSwitch]="contactOption.type">
     <ion-item>
       <ng-template ngSwitchCase="1">
-        <a href="tel:{{contactOption.Kontaktdaten}}">
-          <ion-label>{{contactOption.Kontaktdaten}}</ion-label>
+        <a href="tel:{{contactOption.data}}">
+          <ion-label>{{contactOption.data}}</ion-label>
         </a>
         <ion-icon name="call" slot="start"></ion-icon>
       </ng-template>
 
       <ng-template ngSwitchCase="2">
-        <a href="tel:{{contactOption.Kontaktdaten}}">
-          <ion-label>{{contactOption.Kontaktdaten}}</ion-label>
+        <a href="tel:{{contactOption.data}}">
+          <ion-label>{{contactOption.data}}</ion-label>
         </a>
         <ion-icon name="phone-portrait" slot="start"></ion-icon>
       </ng-template>
 
       <ng-template ngSwitchCase="3">
-        <a href="tel:{{contactOption.Kontaktdaten}}">
-          <ion-label>{{contactOption.Kontaktdaten}}</ion-label>
+        <a href="tel:{{contactOption.data}}">
+          <ion-label>{{contactOption.data}}</ion-label>
         </a>
         <ion-icon name="call" slot="start"></ion-icon>
       </ng-template>
 
       <ng-template ngSwitchCase="4">
         <a href="mailto: {{contactOption.Kontaktdaten}}">
-          <ion-label class="ion-text-wrap">{{contactOption.Kontaktdaten}}</ion-label>
+          <ion-label class="ion-text-wrap">{{contactOption.data}}</ion-label>
         </a>
         <ion-icon name="mail" slot="start"></ion-icon>
       </ng-template>
@@ -61,9 +61,9 @@
   </ng-container>
 
   <ion-item>
-    <a href="bingmaps:?cp={{contact.address[0].city}} {{contact.address[0].streetName}}">
-      <a href="http://maps.apple.com/maps?q={{contact.address[0].city}} {{contact.address[0].streetName}}">
-        <ion-label class="ion-text-wrap">{{contact.address[0].postalCode}} {{contact.address[0].city}} {{contact.address[0].streetName}} {{contact.address[0].orientationNumber}}</ion-label>
+    <a href="bingmaps:?cp={{contact.address.city}} {{contact.address.streetname}}">
+      <a href="http://maps.apple.com/maps?q={{contact.address.city}} {{contact.address.streetname}}">
+        <ion-label class="ion-text-wrap">{{contact.address.postalcode}} {{contact.address.city}} {{contact.address.streetname}} {{contact.address.orientationnumber}}</ion-label>
       </a>
     </a>
     <ion-icon name="location" slot="start"></ion-icon>

@@ -1,6 +1,7 @@
 export interface Address {
-    streetName: string;
-    orientationNumber: string;
-    postalCode: string;
+    id: number;
+    streetname: string;
+    orientationnumber: string;
+    postalcode: string;
     city: string;
 }

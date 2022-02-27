@@ -1,7 +1,7 @@
 export interface ContactPerson {
-    Familienname: string;
-    Vorname: string;
-    Durchwahl: string;
-    Email: string;
-    Mobil: string;
+    id: number;
+    lastname: string;
+    firstname: string;
+    email: string;
+    mobil: string;
 }

@@ -5,14 +5,14 @@ import { ContactPerson } from './contact-person';
 export interface Contact {
     // Properties für Personen und Unternehmen
     contactType: boolean;
-    address: Address[];
+    address: Address;
     contactOptions: ContactOption[];
 
     // Properties für Personen
     lastname?: string;
     firstname?: string;
     birthdate?: string;
-    gender?: number;
+    gender?: boolean;
 
     // Properties für Unternehmen
     companyname?: string;

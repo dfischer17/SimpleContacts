@@ -1,4 +1,5 @@
 export interface ContactOption {
-    Kontaktart: number;
-    Kontaktdaten: string;
+    id: number;
+    type: number;
+    data: string;
 }

@@ -21,11 +21,11 @@
           </ion-item-option>
         </ion-item-options>
         <!-- Depending on contactType either display person-contact or company-contact -->
-        <ng-template ngSwitchCase="true">
+        <ng-template ngSwitchCase="false">
           <app-person-contact [person]="contact" (click)="openModal(contact)"></app-person-contact>
         </ng-template>
 
-        <ng-template ngSwitchCase="false">
+        <ng-template ngSwitchCase="true">
           <app-company-contact [company]="contact" (click)="openModal(contact)"></app-company-contact>
         </ng-template>
 
