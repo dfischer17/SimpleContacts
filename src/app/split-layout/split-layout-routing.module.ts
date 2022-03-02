@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { AuthGuard } from '../core/guards/auth.guard';
 import { AuthenticationGuard } from '../core/guards/authentication.guard';
 
 import { SplitLayoutPage } from './split-layout.page';
@@ -25,7 +24,7 @@ const routes: Routes = [
         loadChildren: () => import('../pages/secret/secret.module').then( m => m.SecretPageModule),
         canActivate: [AuthenticationGuard],
         data: {
-          role: 'ADMIN'
+          role: 'admin'
         }
       },
       {

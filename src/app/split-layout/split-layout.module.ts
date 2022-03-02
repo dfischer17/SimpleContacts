@@ -1,13 +1,10 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-
 import { IonicModule } from '@ionic/angular';
-
 import { SplitLayoutPageRoutingModule } from './split-layout-routing.module';
-
 import { SplitLayoutPage } from './split-layout.page';
-import { SharedDirectivesModule } from '../directives/shared-directives.module';
+import { SharedModule } from '../shared/shared.module';
 
 @NgModule({
   imports: [
@@ -15,7 +12,7 @@ import { SharedDirectivesModule } from '../directives/shared-directives.module';
     FormsModule,
     IonicModule,
     SplitLayoutPageRoutingModule,
-    SharedDirectivesModule
+    SharedModule
   ],
   declarations: [SplitLayoutPage]
 })
