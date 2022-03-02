@@ -32,7 +32,7 @@ export class LoginPage implements OnInit {
   ngOnInit() {
     this.jwtAuthService.logout(); // reset login
     this.returnUrl = this.route.snapshot?.queryParams?.returnUrl || '/app';
-    this.addPrefersColorSchemeListener();
+    this.usrPreferences.addPrefersColorSchemeListener();
     this.usrPreferences.initAccentColor();
   }
 
@@ -61,7 +61,6 @@ export class LoginPage implements OnInit {
         x => {
           console.log(x);
           this.router.navigate([this.returnUrl]);
-          //this.router.navigateByUrl('/app');
         },
         error => this.showWrongLoginAlert(),
       );
@@ -80,39 +79,5 @@ export class LoginPage implements OnInit {
     });
 
     await alert.present();
-  }
-
-  /*
-  Reagiert auf Themeaenderung im System
-  */
-  addPrefersColorSchemeListener() {
-    const colorSchemeQueryList = window.matchMedia('(prefers-color-scheme: dark)');
-
-    const setColorScheme = e => {
-      if (e.matches) {
-        // Dark
-        console.log('Detected Dark');
-        this.enableDarkMode(true);
-      } else {
-        // Light
-        console.log('Detected Light');
-        this.enableDarkMode(false);
-      }
-    };
-
-    setColorScheme(colorSchemeQueryList);
-    colorSchemeQueryList.addListener(setColorScheme);
-  }
-
-  /*
-  Schaltet Dark-Mode ein/aus
-  */
-  enableDarkMode(dark: boolean) {
-    if (dark) {
-      document.body.classList.add('dark');
-    }
-    else {
-      document.body.classList.remove('dark');
-    }
   }
 }

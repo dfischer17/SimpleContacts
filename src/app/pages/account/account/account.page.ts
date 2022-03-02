@@ -13,8 +13,9 @@ export class AccountPage implements OnInit {
   constructor(private authService: AuthService, private usrPreferences: UserPreferencesService) { }
 
   ngOnInit() {
+    this.usrPreferences.addPrefersColorSchemeListener();
     this.usrPreferences.initAccentColor();
-    //this.loadLoggedInUser();
+    this.usrPreferences.initTheme();
     this.loadCurrentUser();
   }
 

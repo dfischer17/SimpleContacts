@@ -29,5 +29,6 @@ export class AuthenticationService {
   logout() {
     console.log('AuthenticationService::logout');
     sessionStorage.removeItem('currentUser');
+    sessionStorage.removeItem('prefersDarkMode');
   }
 }

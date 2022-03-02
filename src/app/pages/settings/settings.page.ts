@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Storage } from '@capacitor/storage';
-import { UserPreferencesService } from '../../core/services/user-preferences.service';
+import { UserPreferencesService } from 'src/app/core/services/user-preferences.service';
+
 
 @Component({
   selector: 'app-settings',
@@ -15,30 +16,17 @@ export class SettingsPage implements OnInit {
 
   ngOnInit() {
     this.initDarkModeToggle();
+    this.usrPreferences.addPrefersColorSchemeListener();
     this.usrPreferences.initAccentColor();
+    this.usrPreferences.initTheme();
   }
 
   /*
   Callback für dark-mode ion-toggle
   */
   toggleDarkMode() {
-    this.enableDarkMode(this.isDark);
-  }
-
-  /*
-  Schaltet Dark-Mode ein/aus
-  */
-  enableDarkMode(dark: boolean) {
-    if (dark) {
-      console.log('Enabled dark-mode');
-      document.body.classList.add('dark');
-    }
-    else {
-      console.log('Disabled dark-mode');
-      document.body.classList.remove('dark');
-    }
-
-    this.isDark = document.body.classList.contains('dark');
+    this.usrPreferences.enableDarkMode(this.isDark);
+    sessionStorage.setItem('prefersDarkMode', this.isDark === true ? 'true' : 'false');
   }
 
   /*
@@ -46,8 +34,7 @@ export class SettingsPage implements OnInit {
   innerhalb der Anwendung
   */
   initDarkModeToggle() {
-    console.log('Init dark-mode toggle ', document.body.classList.contains('dark'));
-    this.isDark = document.body.classList.contains('dark');
+    this.isDark = sessionStorage.getItem('prefersDarkMode') === 'true' ? true : false;
   }
 
   /*
