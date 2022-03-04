@@ -1,0 +1,42 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>Admin</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-list *ngFor="let user of users">
+    <!-- <ion-card>
+      <ion-card-header>       
+        <ion-card-title>{{user.name}}</ion-card-title>
+      </ion-card-header>
+    
+      <ion-card-content>
+        <ion-item>
+          <ion-label>Rolle</ion-label>
+          <ion-label>{{user.role}}</ion-label>
+        </ion-item>
+
+        <ion-item>
+          <ion-label>Passwort</ion-label>
+          <ion-label>{{user.password}}</ion-label>
+        </ion-item>
+      </ion-card-content>
+    </ion-card> -->
+
+    <ion-item>
+      <ion-label>{{user.name}}</ion-label>
+      <ion-icon (click)="removeUser(user.id)" slot="end" name="trash-outline" color="danger"></ion-icon>
+    </ion-item>
+
+  </ion-list>
+
+  <ion-fab (click)="showAddUserModal()" vertical="bottom" horizontal="center" slot="fixed">
+    <ion-fab-button>
+      <ion-icon name="add"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+</ion-content>

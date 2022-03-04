@@ -20,8 +20,8 @@ const routes: Routes = [
         canActivate: [AuthenticationGuard]
       },
       {
-        path: 'secret',
-        loadChildren: () => import('../pages/secret/secret.module').then( m => m.SecretPageModule),
+        path: 'admin',
+        loadChildren: () => import('../pages/admin/admin.module').then( m => m.AdminPageModule),
         canActivate: [AuthenticationGuard],
         data: {
           role: 'admin'

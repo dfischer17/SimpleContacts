@@ -4,17 +4,17 @@ import { FormsModule } from '@angular/forms';
 
 import { IonicModule } from '@ionic/angular';
 
-import { SecretPageRoutingModule } from './secret-routing.module';
+import { AdminPageRoutingModule } from './admin-routing.module';
 
-import { SecretPage } from './secret.page';
+import { AdminPage } from './admin.page';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    SecretPageRoutingModule
+    AdminPageRoutingModule
   ],
-  declarations: [SecretPage]
+  declarations: [AdminPage]
 })
-export class SecretPageModule {}
+export class AdminPageModule {}

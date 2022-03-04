@@ -1,0 +1,26 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>addUserModal</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <form [formGroup]="addUserForm" (ngSubmit)="onSubmitUser()">
+    <ion-item>
+      <ion-label>Benutzername</ion-label>
+      <ion-input formControlName="name" placeholder="Max Mustermann"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>Passwort</ion-label>
+      <ion-input formControlName="password" type="password"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>Administrator</ion-label>
+      <ion-checkbox formControlName="role" color="primary"></ion-checkbox>
+    </ion-item>
+
+    <ion-button type="submit">Benutzer hinzufuegen</ion-button>
+  </form>
+</ion-content>

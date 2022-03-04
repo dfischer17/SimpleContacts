@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { AuthService } from '../core/services/auth.service';
 import { AuthenticationService } from '../core/services/authentication.service';
 
 @Component({
@@ -9,13 +8,12 @@ import { AuthenticationService } from '../core/services/authentication.service';
 })
 export class SplitLayoutPage implements OnInit {
 
-  constructor(private authService: AuthService, private authenticationService: AuthenticationService) { }
+  constructor(private authenticationService: AuthenticationService) { }
 
   ngOnInit() {
   }
 
   logout() {
-    //this.authService.logout();
     this.authenticationService.logout();
   }
 }
