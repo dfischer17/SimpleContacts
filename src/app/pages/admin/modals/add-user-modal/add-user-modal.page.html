@@ -1,26 +1,31 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>addUserModal</ion-title>
+    <ion-title>Benutzer hinzufuegen</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="closeModal()" color="danger">
+        <ion-icon slot="icon-only" ios="close" md="close"></ion-icon>
+      </ion-button>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
+<ion-content class="ion-padding">
   <form [formGroup]="addUserForm" (ngSubmit)="onSubmitUser()">
-    <ion-item>
-      <ion-label>Benutzername</ion-label>
+    <ion-item class="ion-margin-top">
+      <ion-label position="fixed">Name:</ion-label>
       <ion-input formControlName="name" placeholder="Max Mustermann"></ion-input>
     </ion-item>
 
     <ion-item>
-      <ion-label>Passwort</ion-label>
-      <ion-input formControlName="password" type="password"></ion-input>
+      <ion-label position="fixed">Passwort:</ion-label>
+      <ion-input formControlName="password" type="password" placeholder="********"></ion-input>
     </ion-item>
 
     <ion-item>
-      <ion-label>Administrator</ion-label>
+      <ion-label position="stacked">Administrator</ion-label>
       <ion-checkbox formControlName="role" color="primary"></ion-checkbox>
     </ion-item>
 
-    <ion-button type="submit">Benutzer hinzufuegen</ion-button>
+    <ion-button class="ion-margin-top" type="submit" expand="block">Benutzer hinzufuegen</ion-button>
   </form>
 </ion-content>

@@ -24,4 +24,8 @@ export class AddUserModalPage implements OnInit {
   onSubmitUser() {
     this.modalCtrl.dismiss(this.addUserForm.value);
   }
+
+  closeModal() {
+    this.modalCtrl.dismiss();
+  }
 }
