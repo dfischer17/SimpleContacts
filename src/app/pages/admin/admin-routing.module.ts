@@ -9,6 +9,10 @@ const routes: Routes = [
     component: AdminPage
   },
   {
+    path: ':id',
+    loadChildren: () => import('../admin/pages/user-detail/user-detail.module').then(m => m.UserDetailPageModule)
+  },
+  {
     path: 'add-user-modal',
     loadChildren: () => import('./modals/add-user-modal/add-user-modal.module').then( m => m.AddUserModalPageModule)
   },

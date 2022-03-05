@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { ModalController } from '@ionic/angular';
 import { AdminService } from 'src/app/core/services/admin.service';
 import { UserPreferencesService } from 'src/app/core/services/user-preferences.service';
@@ -13,7 +14,7 @@ export class AdminPage implements OnInit {
 
   users: any[];
 
-  constructor(private adminService: AdminService, private usrPreferences: UserPreferencesService, private modalCtrl: ModalController) { }
+  constructor(private adminService: AdminService, private usrPreferences: UserPreferencesService, private modalCtrl: ModalController, private router: Router) { }
 
   ngOnInit() {
     this.usrPreferences.initAccentColor();
@@ -32,6 +33,10 @@ export class AdminPage implements OnInit {
     });
 
     return await modal.present();
+  }
+
+  showUserDetail(id: number) {
+    this.router.navigateByUrl(`app/admin/${id}`);
   }
 
   loadUsers() {

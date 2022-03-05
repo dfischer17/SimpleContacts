@@ -15,6 +15,10 @@ export class AdminService {
     return this.httpClient.get<any[]>(this.baseUrl);
   }
 
+  loadSingleUser(id: number) {
+    return this.httpClient.get<any>(`${this.baseUrl}/${id}`);
+  }
+
   addUser(addUser: any) {
     return this.httpClient.post<any>(this.baseUrl, addUser);
   }
