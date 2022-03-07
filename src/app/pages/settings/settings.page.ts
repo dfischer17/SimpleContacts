@@ -16,9 +16,7 @@ export class SettingsPage implements OnInit {
 
   ngOnInit() {
     this.initDarkModeToggle();
-    this.usrPreferences.addPrefersColorSchemeListener();
-    this.usrPreferences.initAccentColor();
-    this.usrPreferences.initTheme();
+    this.usrPreferences.initPreferences();
   }
 
   /*
@@ -48,9 +46,6 @@ export class SettingsPage implements OnInit {
     document.body.style.setProperty('--accentColor', newAccentColor);
     document.body.style.setProperty('--toggleHead', '#ffffff');
 
-    Storage.set({
-      key: 'preferedAccentColor',
-      value: newAccentColor,
-    });
+    this.usrPreferences.changeAccentColor(newAccentColor);
   }
 }

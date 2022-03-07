@@ -15,9 +15,7 @@ export class UserDetailPage implements OnInit {
   constructor(private route: ActivatedRoute, private router: Router, private adminService: AdminService, private usrPreferences: UserPreferencesService) { }
 
   ngOnInit() {
-    this.usrPreferences.initAccentColor();
-    this.usrPreferences.initTheme();
-    this.usrPreferences.addPrefersColorSchemeListener();
+    this.usrPreferences.initPreferences();
 
     // Load detail-page for selected user in admin-page
     const id = this.route.snapshot.paramMap.get('id');

@@ -6,14 +6,15 @@ import {
   HttpInterceptor
 } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { AuthenticationService } from '../services/authentication.service';
 
 @Injectable()
 export class JwtInterceptor implements HttpInterceptor {
 
-  constructor() {}
+  constructor(private authService: AuthenticationService) {}
 
   intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
-    const currentUser = JSON.parse(sessionStorage.getItem('currentUser'));
+    const currentUser = this.authService.getCurrentUser();
     if (currentUser && currentUser.token) {
       request = request.clone({
         setHeaders: {

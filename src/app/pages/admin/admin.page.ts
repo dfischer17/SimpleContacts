@@ -17,9 +17,7 @@ export class AdminPage implements OnInit {
   constructor(private adminService: AdminService, private usrPreferences: UserPreferencesService, private modalCtrl: ModalController, private router: Router) { }
 
   ngOnInit() {
-    this.usrPreferences.initAccentColor();
-    this.usrPreferences.initTheme();
-    this.usrPreferences.addPrefersColorSchemeListener();
+    this.usrPreferences.initPreferences();
     this.loadUsers();
   }
 

@@ -30,5 +30,10 @@ export class AuthenticationService {
     console.log('AuthenticationService::logout');
     sessionStorage.removeItem('currentUser');
     sessionStorage.removeItem('prefersDarkMode');
+    sessionStorage.removeItem('preferedAccentColor');
+  }
+
+  getCurrentUser() {
+    return JSON.parse(sessionStorage.getItem('currentUser'));
   }
 }

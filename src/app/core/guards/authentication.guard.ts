@@ -2,13 +2,14 @@ import { Injectable } from '@angular/core';
 import { ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot, UrlTree } from '@angular/router';
 import { AlertController } from '@ionic/angular';
 import { Observable } from 'rxjs';
+import { AuthenticationService } from '../services/authentication.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthenticationGuard implements CanActivate {
 
-  constructor(private router: Router, private alertCtrl: AlertController) { }
+  constructor(private router: Router, private alertCtrl: AlertController, private authService: AuthenticationService) { }
 
   canActivate(
     route: ActivatedRouteSnapshot,
@@ -20,7 +21,7 @@ export class AuthenticationGuard implements CanActivate {
     if (sessionStorage.getItem('currentUser')) {
 
       // Check if user posses required role to access route
-      const currentUserRole = JSON.parse(sessionStorage.getItem('currentUser')).role;
+      const currentUserRole = this.authService.getCurrentUser().role;
       if (!requiredRole || requiredRole === currentUserRole) {
         return true;
       }

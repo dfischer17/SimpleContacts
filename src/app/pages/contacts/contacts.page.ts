@@ -22,9 +22,7 @@ export class ContactsPage implements OnInit {
 
   ngOnInit() {
     this.loadContacts();
-    this.usrPreferences.initAccentColor();
-    this.usrPreferences.initTheme();
-    this.usrPreferences.addPrefersColorSchemeListener();
+    this.usrPreferences.initPreferences();
     console.log('Loaded contacts');
   }
 

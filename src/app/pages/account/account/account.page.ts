@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { AuthService, User } from '../../../core/services/auth.service';
+import { AuthenticationService } from 'src/app/core/services/authentication.service';
 import { UserPreferencesService } from '../../../core/services/user-preferences.service';
 
 @Component({
@@ -10,20 +10,14 @@ import { UserPreferencesService } from '../../../core/services/user-preferences.
 export class AccountPage implements OnInit {
   currentUser: any;
 
-  constructor(private authService: AuthService, private usrPreferences: UserPreferencesService) { }
+  constructor(private authService: AuthenticationService, private usrPreferences: UserPreferencesService) { }
 
   ngOnInit() {
-    this.usrPreferences.addPrefersColorSchemeListener();
-    this.usrPreferences.initAccentColor();
-    this.usrPreferences.initTheme();
+    this.usrPreferences.initPreferences();
     this.loadCurrentUser();
   }
 
-  // async loadLoggedInUser() {
-  //   this.currentUser = this.authService.getUserSync();
-  // }
-
   loadCurrentUser() {
-    this.currentUser = JSON.parse(sessionStorage.getItem('currentUser'));
+    this.currentUser = this.authService.getCurrentUser();
   }
 }
