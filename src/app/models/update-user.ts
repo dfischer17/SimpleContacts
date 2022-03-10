@@ -3,5 +3,5 @@ export interface UpdateUser {
     role?: string;
     password?: string;
     prefersDarkMode?: boolean;
-    preferedAccentColor?: boolean;
+    preferedAccentColor?: string;
 }

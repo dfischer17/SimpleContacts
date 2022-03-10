@@ -18,4 +18,8 @@ export class UserService {
   changePreferedTheme(id: number, updateUser: UpdateUser) {
     return this.httpClient.put<UpdateUser>(`${this.baseUrl}/${id}`, updateUser);
   }
+
+  changePreferedAccentColor(id: number, updateUser: UpdateUser) {
+    return this.httpClient.put<UpdateUser>(`${this.baseUrl}/${id}`, updateUser);
+  }
 }

@@ -1,5 +1,4 @@
 import { Injectable } from '@angular/core';
-import { Storage } from '@capacitor/storage';
 import { AuthenticationService } from './authentication.service';
 import { UserService } from './user.service';
 
@@ -33,6 +32,7 @@ export class UserPreferencesService {
     document.body.style.setProperty('--accentColor', color);
     document.body.style.setProperty('--toggleHead', '#ffffff'); // Necassery to style ion-toggle correctly
     sessionStorage.setItem('preferedAccentColor', color);
+    this.userService.changePreferedAccentColor(this.authService.getCurrentUser().id, {preferedAccentColor:color}).subscribe();
   }
 
   private async initAccentColor() {
