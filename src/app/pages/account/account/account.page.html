@@ -12,5 +12,6 @@
     <ion-icon name="person" style="font-size:150px"></ion-icon>
     <ion-label id="nameLabel" style='color:var(--accentColor)'>{{currentUser.name}}</ion-label>
     <ion-label id="roleLabel">Rolle: {{currentUser.role}}</ion-label>
+    <ion-button (click)="openModal()" color="warning" shape="round" style="margin-top: 2rem;">Passwort ändern</ion-button>    
   </div>
 </ion-content>
