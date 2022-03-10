@@ -1,17 +1,38 @@
 import { Injectable } from '@angular/core';
 import { Storage } from '@capacitor/storage';
 import { AuthenticationService } from './authentication.service';
+import { UserService } from './user.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class UserPreferencesService {
 
-  constructor(private authService: AuthenticationService) { }
+  constructor(private authService: AuthenticationService, private userService: UserService) { }
 
   initPreferences() {
     this.initAccentColor();
     this.initTheme();
+  }
+
+  /*
+  Schaltet Dark-Mode ein/aus
+  */
+  enableDarkMode(dark: boolean) {
+    if (dark) {
+      document.body.classList.add('dark');
+      this.userService.changePreferedTheme(this.authService.getCurrentUser().id,{ prefersDarkMode: true}).subscribe();
+    }
+    else {
+      document.body.classList.remove('dark');
+      this.userService.changePreferedTheme(this.authService.getCurrentUser().id,{ prefersDarkMode: false}).subscribe();
+    }
+  }
+
+  changeAccentColor(color: string) {
+    document.body.style.setProperty('--accentColor', color);
+    document.body.style.setProperty('--toggleHead', '#ffffff'); // Necassery to style ion-toggle correctly
+    sessionStorage.setItem('preferedAccentColor', color);
   }
 
   private async initAccentColor() {
@@ -64,23 +85,5 @@ export class UserPreferencesService {
         this.enableDarkMode(prefersDark);
       }
     }
-  }
-
-  /*
-  Schaltet Dark-Mode ein/aus
-  */
-  enableDarkMode(dark: boolean) {
-    if (dark) {
-      document.body.classList.add('dark');
-    }
-    else {
-      document.body.classList.remove('dark');
-    }
-  }
-
-  changeAccentColor(color: string) {
-    document.body.style.setProperty('--accentColor', color);
-    document.body.style.setProperty('--toggleHead', '#ffffff'); // Necassery to style ion-toggle correctly
-    sessionStorage.setItem('preferedAccentColor', color);
   }
 }

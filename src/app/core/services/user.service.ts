@@ -14,4 +14,8 @@ export class UserService {
   changePassword(id: number, updateUser: UpdateUser) {
     return this.httpClient.put<UpdateUser>(`${this.baseUrl}/${id}`, updateUser);
   }
+
+  changePreferedTheme(id: number, updateUser: UpdateUser) {
+    return this.httpClient.put<UpdateUser>(`${this.baseUrl}/${id}`, updateUser);
+  }
 }
