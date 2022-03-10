@@ -80,30 +80,30 @@ export class ContactsPage implements OnInit {
     return await modal.present();
   }
 
-  // Handle swiping
-  swipeEvent($event, item, contact: Contact) {
-    console.log($event)
-    if ($event.detail.side == 'start') {
-      console.log('call ' + this.getFirstPhonenumber(contact.contactOptions));
-      window.open('tel:' + this.getFirstPhonenumber(contact.contactOptions), "_self");
-      this.closeAllItems(item)
-    } else {
-      console.log('email ' + this.getFirstEmailAddress(contact.contactOptions));
-      window.open('mailto:' + this.getFirstEmailAddress(contact.contactOptions), "_self");
-      this.closeAllItems(item)
-    }
+  handleSlideCall(contact: Contact) {
+    window.open('tel:' + this.getFirstPhonenumber(contact.contactOptions), '_self');
   }
 
-  // Close swipes after swiping
-  closeAllItems(item) {
-    let a = Array.prototype.slice.call(item.el.children)
-    a.map((val) => {
-      val.close();
-    })
+  handleSlideEmail(contact: Contact) {
+    window.open('mailto:' + this.getFirstEmailAddress(contact.contactOptions), '_self');
+    console.log('Handle slide email');
   }
+
+  // Handle swiping
+  // swipeEvent($event, item, contact: Contact) {
+  //   console.log($event)
+  //   if ($event.detail.side == 'start') {
+  //     console.log('call ' + this.getFirstPhonenumber(contact.contactOptions));
+  //     window.open('tel:' + this.getFirstPhonenumber(contact.contactOptions), "_self");
+  //     this.closeAllItems(item)
+  //   } else {
+  //     console.log('email ' + this.getFirstEmailAddress(contact.contactOptions));
+  //     window.open('mailto:' + this.getFirstEmailAddress(contact.contactOptions), "_self");
+  //     this.closeAllItems(item)
+  //   }
+  // }
 
   /*HELPERS*/
-
   /*
   Sorts the contacts either by lastname or companyname depending on type
   */
