@@ -26,12 +26,12 @@
 
       <ion-item>
         <ion-label>Dark Theme:</ion-label>
-        <ion-label>{{user?.prefersDarkMode}}</ion-label>
+        <ion-label>{{user?.prefersDarkMode | theme}}</ion-label>
       </ion-item>
 
       <ion-item>
         <ion-label>Akzentfarbe:</ion-label>
-        <ion-label>{{user?.preferedAccentColor}}</ion-label>
+        <ion-label>{{user?.preferedAccentColor | accent}}</ion-label>
       </ion-item>
     </ion-card-content>
   </ion-card>

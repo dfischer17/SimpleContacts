@@ -8,12 +8,15 @@ import { UserDetailPageRoutingModule } from './user-detail-routing.module';
 
 import { UserDetailPage } from './user-detail.page';
 
+import { SharedModule } from 'src/app/shared/shared.module';
+
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    UserDetailPageRoutingModule
+    UserDetailPageRoutingModule,
+    SharedModule
   ],
   declarations: [UserDetailPage]
 })
