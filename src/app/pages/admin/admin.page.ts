@@ -50,6 +50,7 @@ export class AdminPage implements OnInit {
   }
 
   removeUser(id: number) {
+    event.stopPropagation();
     this.adminService.removeUser(id).subscribe(_ => this.loadUsers());
   }
 }
