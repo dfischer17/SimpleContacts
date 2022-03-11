@@ -39,24 +39,6 @@ export class ContactsPage implements OnInit {
     });
   }
 
-  /*
-  Loads contacts and hides loading-indicator when finished
-  */
-  handleLoadContacts() {
-    this.dataService.loadSampleData().toPromise().then(data => {
-      this.contacts = data.sort((a, b) => this.sortContacts(a, b));
-      this.closeLoading();
-      console.log(data);
-    });
-  }
-
-  /*
-  Dismisses loading-indicator
-  */
-  closeLoading() {
-    this.loadingCtrl.dismiss();
-  }
-
   // Open contact-detail modal
   async openModal(contact: Contact) {
     let modal;
@@ -87,6 +69,24 @@ export class ContactsPage implements OnInit {
   handleSlideEmail(contact: Contact) {
     window.open('mailto:' + this.getFirstEmailAddress(contact.contactOptions), '_self');
     console.log('Handle slide email');
+  }
+
+  /*
+ Loads contacts and hides loading-indicator when finished
+ */
+  private handleLoadContacts() {
+    this.dataService.loadContacts().toPromise().then(data => {
+      this.contacts = data.sort((a, b) => this.sortContacts(a, b));
+      this.closeLoading();
+      console.log(data);
+    });
+  }
+
+  /*
+  Dismisses loading-indicator
+  */
+  private closeLoading() {
+    this.loadingCtrl.dismiss();
   }
 
   /*HELPERS*/

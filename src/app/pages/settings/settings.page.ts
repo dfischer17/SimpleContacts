@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { Storage } from '@capacitor/storage';
 import { UserPreferencesService } from 'src/app/core/services/user-preferences.service';
 
 
@@ -9,7 +8,7 @@ import { UserPreferencesService } from 'src/app/core/services/user-preferences.s
   styleUrls: ['./settings.page.scss'],
 })
 export class SettingsPage implements OnInit {
-  isDark: boolean;
+  prefersDark: boolean;
   selectedAccentColor: string;
 
   constructor(private usrPreferences: UserPreferencesService) {}
@@ -23,16 +22,8 @@ export class SettingsPage implements OnInit {
   Callback für dark-mode ion-toggle
   */
   toggleDarkMode() {
-    this.usrPreferences.enableDarkMode(this.isDark);
-    sessionStorage.setItem('prefersDarkMode', this.isDark === true ? 'true' : 'false');
-  }
-
-  /*
-  Synchronisiert den Zustand des DarkMode ion-toggle (ein/aus) mit den Systemeinstellungen und
-  innerhalb der Anwendung
-  */
-  initDarkModeToggle() {
-    this.isDark = sessionStorage.getItem('prefersDarkMode') === 'true' ? true : false;
+    this.usrPreferences.enableDarkMode(this.prefersDark);
+    sessionStorage.setItem('prefersDarkMode', this.prefersDark === true ? 'true' : 'false');
   }
 
   /*
@@ -47,5 +38,13 @@ export class SettingsPage implements OnInit {
     document.body.style.setProperty('--toggleHead', '#ffffff');
 
     this.usrPreferences.changeAccentColor(newAccentColor);
+  }
+
+  /*
+  Synchronisiert den Zustand des DarkMode ion-toggle (ein/aus) mit den Systemeinstellungen und
+  innerhalb der Anwendung
+  */
+  private initDarkModeToggle() {
+    this.prefersDark = sessionStorage.getItem('prefersDarkMode') === 'true' ? true : false;
   }
 }

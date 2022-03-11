@@ -11,7 +11,7 @@
   <ion-list>
     <ion-item>
       <ion-label>Dark Theme</ion-label>
-      <ion-toggle [(ngModel)]='isDark' (ionChange)='toggleDarkMode()' style='--handle-background-checked:var(--toggleHead); --background-checked:var(--accentColor)'>Umschalten</ion-toggle>
+      <ion-toggle [(ngModel)]='prefersDark' (ionChange)='toggleDarkMode()' style='--handle-background-checked:var(--toggleHead); --background-checked:var(--accentColor)'>Umschalten</ion-toggle>
       <ion-icon name="moon" slot="start"></ion-icon>
     </ion-item>
 

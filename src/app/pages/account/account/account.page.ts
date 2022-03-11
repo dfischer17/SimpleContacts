@@ -29,7 +29,7 @@ export class AccountPage implements OnInit {
     return await modal.present();
   }
 
-  loadCurrentUser() {
+  private loadCurrentUser() {
     this.currentUser = this.authService.getCurrentUser();
   }
 }

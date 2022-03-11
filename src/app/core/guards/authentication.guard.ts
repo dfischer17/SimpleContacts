@@ -32,7 +32,7 @@ export class AuthenticationGuard implements CanActivate {
     return false;
   }
 
-  async showNotAuthorizedAlert() {
+  private async showNotAuthorizedAlert() {
     const alert = await this.alertCtrl.create({
       header: 'Nicht Autorisiert',
       message: 'Sie sind nicht berechtigt diese Seite aufzurufen!',

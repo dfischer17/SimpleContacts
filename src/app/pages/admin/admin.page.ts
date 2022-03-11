@@ -37,13 +37,6 @@ export class AdminPage implements OnInit {
     this.router.navigateByUrl(`app/admin/${id}`);
   }
 
-  loadUsers() {
-    this.adminService.loadUsers().subscribe(
-      users => this.users = users,
-      err => console.error('Failed to load users!'),
-    );
-  }
-
   addUser(user: any) {
     // eslint-disable-next-line max-len
     this.adminService.addUser({name: user.name, role: user.role === true ? 'admin' : 'user', password: user.password}).subscribe(_ => this.loadUsers());
@@ -52,5 +45,12 @@ export class AdminPage implements OnInit {
   removeUser(id: number) {
     event.stopPropagation();
     this.adminService.removeUser(id).subscribe(_ => this.loadUsers());
+  }
+
+  private loadUsers() {
+    this.adminService.loadUsers().subscribe(
+      users => this.users = users,
+      err => console.error('Failed to load users!'),
+    );
   }
 }

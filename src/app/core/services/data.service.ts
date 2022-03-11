@@ -20,7 +20,7 @@ export class DataService {
   /*
   Loads contacts from backend
   */
-  loadSampleData(): Observable<Contact[]> {
+  loadContacts(): Observable<Contact[]> {
     return this.httpClient.get<Contact[]>('https://localhost:5001/api/Contact');
   }
 }
